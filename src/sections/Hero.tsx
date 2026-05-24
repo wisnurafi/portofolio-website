@@ -21,7 +21,7 @@ export default function Hero() {
 
         <div className="mt-10 flex flex-wrap gap-4 fade-up">
           <a
-            href="https://github.com/wsnrfidev"
+            href="https://github.com/wisnurafi"
             target="_blank"
             rel="noreferrer"
             className="px-5 py-3 rounded-xl border border-cyan-300/45 bg-cyan-300/10 text-cyan-100 hover:bg-cyan-300/20 transition"

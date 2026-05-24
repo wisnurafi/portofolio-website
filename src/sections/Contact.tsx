@@ -34,8 +34,8 @@ const contacts = [
   },
   {
     label: "GitHub",
-    href: "https://github.com/wsnrfidev",
-    value: "wsnrfidev",
+    href: "https://github.com/wisnurafi",
+    value: "wisnurafi",
     icon: GithubIcon,
   },
   {

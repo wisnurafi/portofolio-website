@@ -74,7 +74,7 @@ export default function OpenGraphImage() {
             color: "#9ca3af",
           }}
         >
-          <span>github.com/wsnrfidev</span>
+          <span>github.com/wisnurafi</span>
           <span>•</span>
           <span>instagram.com/wisnurafi_</span>
         </div>
