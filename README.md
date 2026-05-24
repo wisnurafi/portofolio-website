@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Wisnu Rafi - Portfolio
+
+Personal portfolio site for Wisnu Rafi, a Systems Software Engineer and Offensive Security Engineer. Built with Next.js 16, React 19, Tailwind CSS v4, and Framer Motion.
+
+## Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org) (App Router)
+- **Runtime**: React 19
+- **Language**: TypeScript 5
+- **Styling**: Tailwind CSS v4 with `tw-animate-css`
+- **UI Primitives**: Radix UI, shadcn, `class-variance-authority`, `tailwind-merge`
+- **Animation**: Framer Motion
+- **Icons**: Hugeicons, Lucide React
+- **Linting**: ESLint 9 (`eslint-config-next`)
+
+## Project Structure
+
+```
+src/
+├── app/                    # Next.js App Router entry
+│   ├── layout.tsx          # Root layout, metadata, fonts
+│   ├── page.tsx            # Home page composition
+│   ├── opengraph-image.tsx # Dynamic OG image
+│   └── globals.css         # Global styles
+├── components/
+│   ├── layout/             # Layout-level components
+│   ├── shared/             # Reusable shared components
+│   ├── ui/                 # UI primitives (shadcn-based)
+│   ├── ScrollEffects.tsx   # Scroll-driven effects
+│   └── TopNav.tsx          # Top navigation bar
+├── sections/               # Page sections
+│   ├── Hero.tsx
+│   ├── About.tsx
+│   ├── Expertise.tsx
+│   ├── Experience.tsx
+│   ├── Stack.tsx
+│   └── Contact.tsx
+└── lib/                    # Utilities (e.g. cn helper)
+```
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser. The page auto-updates as you edit files under `src/`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Script          | Description                          |
+| --------------- | ------------------------------------ |
+| `npm run dev`   | Start the development server         |
+| `npm run build` | Create a production build            |
+| `npm run start` | Start the production server          |
+| `npm run lint`  | Run ESLint across the project        |
 
-## Learn More
+## Environment Variables
 
-To learn more about Next.js, take a look at the following resources:
+Create a `.env.local` file at the project root:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+NEXT_PUBLIC_SITE_URL=https://your-domain.com
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This value is used as `metadataBase` and for Open Graph URLs in `src/app/layout.tsx`. If unset, it falls back to `https://example.com`.
 
-## Deploy on Vercel
+## Fonts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Loaded via `next/font/google`:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Space Grotesk** - primary sans-serif (`--font-space-grotesk`)
+- **Geist Mono** - monospace (`--font-geist-mono`)
+
+## Deployment
+
+The app is ready to deploy on any platform that supports Next.js 16. The recommended path is [Vercel](https://vercel.com/new). Set `NEXT_PUBLIC_SITE_URL` in the platform's environment settings before deploying.
+
+```bash
+npm run build
+npm run start
+```
+
+## License
+
+Private project. All rights reserved (c) 2026 Wisnu Rafi.
