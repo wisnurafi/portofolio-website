@@ -91,4 +91,4 @@ npm run start
 
 ## License
 
-Private project. All rights reserved (c) 2026 Wisnu Rafi.
+Open Source
