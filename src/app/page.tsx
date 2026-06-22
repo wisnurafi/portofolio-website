@@ -9,7 +9,7 @@ import TopNav from "@/components/TopNav";
 
 export default function Home() {
   return (
-    <main className="text-zinc-100">
+    <main className="page-shell text-zinc-100">
       <TopNav />
       <ScrollEffects />
       <Hero />
@@ -18,8 +18,9 @@ export default function Home() {
       <Experience />
       <Stack />
       <Contact />
-      <footer className="px-6 md:px-8 py-8 text-center text-zinc-500 text-sm border-t border-white/10">
-        {"\u00A9"} 2026 Wisnu Rafi
+      <footer className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-6 py-8 font-mono text-xs uppercase tracking-[0.16em] text-zinc-500 md:px-8">
+        <span>{"\u00A9"} 2026 Wisnu Rafi</span>
+        <span className="hidden sm:inline">End of issue 01</span>
       </footer>
     </main>
   );

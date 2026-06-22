@@ -69,9 +69,14 @@ Create a `.env.local` file at the project root:
 
 ```bash
 NEXT_PUBLIC_SITE_URL=https://your-domain.com
+RESEND_API_KEY=re_your_api_key
+CONTACT_TO_EMAIL=wsnfii60@gmail.com
+CONTACT_FROM_EMAIL=Portfolio <onboarding@resend.dev>
 ```
 
-This value is used as `metadataBase` and for Open Graph URLs in `src/app/layout.tsx`. If unset, it falls back to `https://example.com`.
+`NEXT_PUBLIC_SITE_URL` is used as `metadataBase` and for Open Graph URLs in `src/app/layout.tsx`. If unset, it falls back to `https://example.com`.
+
+The contact form posts to `src/app/api/contact/route.ts` and sends email through Resend. `RESEND_API_KEY` is required. `CONTACT_TO_EMAIL` and `CONTACT_FROM_EMAIL` are optional; the form sends to `wsnfii60@gmail.com` by default. Use a verified Resend domain for `CONTACT_FROM_EMAIL` in production.
 
 ## Fonts
 
