@@ -1,92 +1,79 @@
-﻿const EmailIcon = () => (
-  <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
-    <path d="M4 6h16v12H4z" stroke="currentColor" strokeWidth="1.7" />
-    <path d="m4 7 8 6 8-6" stroke="currentColor" strokeWidth="1.7" />
-  </svg>
-);
-
-const GithubIcon = () => (
-  <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
-    <path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.57v-2.17c-3.35.73-4.06-1.62-4.06-1.62-.55-1.4-1.35-1.78-1.35-1.78-1.1-.75.08-.74.08-.74 1.22.09 1.86 1.24 1.86 1.24 1.08 1.86 2.84 1.32 3.53 1 .11-.79.42-1.32.76-1.63-2.68-.3-5.5-1.35-5.5-5.97 0-1.31.47-2.39 1.24-3.24-.12-.31-.54-1.55.12-3.23 0 0 1-.32 3.3 1.24a11.5 11.5 0 0 1 6 0c2.29-1.56 3.29-1.24 3.29-1.24.67 1.68.25 2.92.12 3.23.78.85 1.24 1.93 1.24 3.24 0 4.63-2.82 5.66-5.5 5.96.43.38.82 1.11.82 2.24v3.31c0 .31.22.69.82.57A12 12 0 0 0 12 .5" />
-  </svg>
-);
-
-const InstagramIcon = () => (
-  <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
-    <rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" strokeWidth="1.7" />
-    <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.7" />
-    <circle cx="17.2" cy="6.8" r="1" fill="currentColor" />
-  </svg>
-);
-
-const DiscordIcon = () => (
-  <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
-    <path d="M20.3 5.8a16 16 0 0 0-4-1.25l-.19.37a14.2 14.2 0 0 1 3.65 1.17 12.9 12.9 0 0 0-7.7 0 14.2 14.2 0 0 1 3.65-1.17l-.2-.37a16 16 0 0 0-4 1.25C8.1 9.2 7.3 12.5 7.6 15.7a16.1 16.1 0 0 0 4.9 2.5l.4-.7c-.9-.3-1.8-.8-2.5-1.4l.2-.15c1.5.7 3.2.7 4.7 0l.2.15c-.7.6-1.6 1.1-2.5 1.4l.4.7a16.1 16.1 0 0 0 4.9-2.5c.4-3.6-.7-6.8-2.8-9.9ZM10.5 13.8c-.6 0-1-.5-1-1.2 0-.6.4-1.2 1-1.2.6 0 1 .5 1 1.2 0 .7-.4 1.2-1 1.2Zm3 0c-.6 0-1-.5-1-1.2 0-.6.4-1.2 1-1.2.6 0 1 .5 1 1.2 0 .7-.4 1.2-1 1.2Z" />
-  </svg>
-);
+import { ActionTag, ChapterHeader, AvatarBeat } from "@/components/comic";
+import ContactForm from "@/components/ContactForm";
+import { AtSign, Code2, Mail, MessageCircle } from "lucide-react";
 
 const contacts = [
-  {
-    label: "Email",
-    href: "mailto:wsnfii60@gmail.com",
-    value: "wsnfii60@gmail.com",
-    icon: EmailIcon,
-  },
-  {
-    label: "GitHub",
-    href: "https://github.com/wisnurafi",
-    value: "wisnurafi",
-    icon: GithubIcon,
-  },
-  {
-    label: "Instagram",
-    href: "https://instagram.com/wisnurafi_",
-    value: "@wisnurafi_",
-    icon: InstagramIcon,
-  },
-  {
-    label: "Discord",
-    href: "https://discord.com/users/1063828230601183383",
-    value: "noobraze_",
-    icon: DiscordIcon,
-  },
+  { label: "Email", href: "mailto:wsnfii60@gmail.com", value: "wsnfii60@gmail.com", icon: Mail },
+  { label: "GitHub", href: "https://github.com/wisnurafi", value: "wisnurafi", icon: Code2 },
+  { label: "Instagram", href: "https://instagram.com/wisnurafi_", value: "@wisnurafi_", icon: AtSign },
+  { label: "Discord", href: "https://discord.com/users/1063828230601183383", value: "noobraze_", icon: MessageCircle },
 ];
 
 export default function Contact() {
   return (
     <section id="contact" className="section-shell" data-reveal>
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-semibold mb-8">Contact</h2>
+      <ChapterHeader
+        code="CH.05"
+        kicker="Last panel"
+        title="Send me the ugly version."
+      />
 
-        <div className="glass-card hover-glow p-6 md:p-8" data-reveal>
-          <p className="text-zinc-300 max-w-2xl mb-7">
-            Interested in systems engineering, offensive security, or low-level software collaboration?
-         </p>
-         <p className="text-zinc-300 max-w-2xl mb-7">
-            Feel free to reach out.
-         </p>
+      <div className="comic-page" data-reveal>
+        {/* Panel 1 — the brief */}
+        <div className="panel panel-3 panel-ink panel-dots" data-reveal-child>
+          <span className="panel-num">01</span>
+          <ActionTag tone="yellow">Incoming brief</ActionTag>
+          <p className="mt-5 text-2xl font-black uppercase leading-tight text-zinc-50 md:text-3xl">
+            Broken builds. Behavior that makes no sense. A finding that needs a
+            second pair of eyes. A binary that refuses to explain itself.
+          </p>
+          <div className="panel-caption mt-6">
+            Do not polish it. Tell me what happened, what you expected, where it
+            runs, and what you already tried.
+          </div>
+          <AvatarBeat
+            pose="alert"
+            caption="Send it broken. I prefer it that way."
+            className="mt-6"
+            avatarClassName="max-w-[96px]"
+          />
+        </div>
 
-          <div className="grid gap-3 sm:grid-cols-2">
+        {/* Panel 2 — channels */}
+        <div className="panel panel-3 panel-paper" data-reveal-child>
+          <span className="panel-num">02</span>
+          <p className="comic-label text-zinc-600">Direct channels</p>
+          <div className="mt-4 grid gap-3">
             {contacts.map((item) => {
               const Icon = item.icon;
+              const external = !item.href.startsWith("mailto:");
               return (
                 <a
                   key={item.label}
-                  className="group rounded-xl border border-white/15 bg-white/5 p-4 hover-glow hover:border-cyan-300/45 transition"
+                  className="group flex items-center justify-between gap-4 border-[3px] border-zinc-950 bg-zinc-100 p-3 text-zinc-950 shadow-[4px_4px_0_#020617] transition-transform hover:-translate-y-1"
                   href={item.href}
-                  target={item.href.startsWith("mailto:") ? undefined : "_blank"}
-                  rel={item.href.startsWith("mailto:") ? undefined : "noreferrer"}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noreferrer" : undefined}
                 >
-                  <div className="flex items-center gap-3 text-cyan-100">
-                    <Icon />
-                    <span className="font-medium">{item.label}</span>
-                  </div>
-                  <p className="mt-2 text-zinc-300 group-hover:text-zinc-100 transition-colors">
-                    {item.value}
-                  </p>
+                  <span className="flex min-w-0 items-center gap-3">
+                    <Icon className="h-5 w-5 shrink-0" />
+                    <span className="truncate font-black">{item.value}</span>
+                  </span>
+                  <span className="font-mono text-xs font-black uppercase tracking-[0.14em] text-cyan-700">
+                    {item.label}
+                  </span>
                 </a>
               );
             })}
+          </div>
+        </div>
+
+        {/* Panel 3 — form, full width */}
+        <div className="panel panel-6 panel-cyan panel-dots" data-reveal-child>
+          <span className="panel-num">03</span>
+          <p className="comic-label text-zinc-800">Drop the message here</p>
+          <div className="mt-4">
+            <ContactForm />
           </div>
         </div>
       </div>
