@@ -115,7 +115,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={state === "sending"}
-          className="inline-flex items-center justify-center gap-2 border border-amber/40 bg-amber/10 px-5 py-3 font-mono text-xs font-black uppercase tracking-[0.14em] text-amber transition-all hover:-translate-y-0.5 hover:border-amber hover:bg-amber hover:text-background hover:shadow-[0_0_24px_-6px_rgba(201, 151, 63,0.35)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+          className="inline-flex min-h-11 w-full items-center justify-center gap-2 border border-amber/40 bg-amber/10 px-5 py-3 font-mono text-xs font-black uppercase tracking-[0.12em] text-amber transition-all hover:-translate-y-0.5 hover:border-amber hover:bg-amber hover:text-background hover:shadow-[0_0_24px_-6px_rgba(201,151,63,0.35)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto sm:tracking-[0.14em]"
         >
           <Send className="h-4 w-4" />
           {state === "sending" ? "Sending..." : "Send message"}

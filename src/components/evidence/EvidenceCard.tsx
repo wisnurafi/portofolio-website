@@ -61,6 +61,7 @@ export default function EvidenceCard({
       className={cn(
         baseClass,
         `${baseClass}-${accent}`,
+        "col-span-full sm:col-span-1",
         colSpan,
         "group card-lift",
         damage === "torn" && "paper-torn",

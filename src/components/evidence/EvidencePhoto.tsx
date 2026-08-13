@@ -43,7 +43,7 @@ export default function EvidencePhoto({
 
   return (
     <div
-      className={cn("evidence-photo group card-lift", colSpan, className)}
+      className={cn("evidence-photo group card-lift col-span-full sm:col-span-1", colSpan, className)}
       style={{
         transform: `rotate(${rotate}deg)`,
         ["--note-rotate" as string]: `${rotate}deg`,

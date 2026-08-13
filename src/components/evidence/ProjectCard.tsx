@@ -54,7 +54,7 @@ export default function ProjectCard({
   return (
     <div
       className={cn(
-        "evidence-card-mono evidence-card-mono-amber group card-lift flex h-full flex-col paper-torn",
+        "evidence-card-mono evidence-card-mono-amber group card-lift col-span-full flex h-full min-w-0 flex-col paper-torn sm:col-span-1",
         className,
       )}
       style={{
@@ -91,15 +91,15 @@ export default function ProjectCard({
       </div>
 
       {/* category rail — single 1px line, no rainbow */}
-      <div className="mb-3 flex items-center justify-between gap-3 border-b border-white/5 pb-3">
-        <div className="flex items-center gap-2">
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-2 border-b border-white/5 pb-3 sm:gap-3">
+        <div className="flex min-w-0 items-center gap-2">
           <FolderCode className="h-3.5 w-3.5 text-muted-foreground" />
-          <span className="font-mono text-[0.55rem] font-black uppercase tracking-[0.18em] text-muted-foreground">
+          <span className="truncate font-mono text-[0.55rem] font-black uppercase tracking-[0.16em] text-muted-foreground sm:tracking-[0.18em]">
             {config.label}
           </span>
         </div>
         {statusCfg && (
-          <span className="flex items-center gap-1.5 font-mono text-[0.55rem] font-black uppercase tracking-[0.14em] text-muted-foreground">
+          <span className="flex shrink-0 items-center gap-1.5 font-mono text-[0.55rem] font-black uppercase tracking-[0.12em] text-muted-foreground sm:tracking-[0.14em]">
             <span className={cn("h-1.5 w-1.5 rounded-full", statusCfg.dotClass)} />
             {statusCfg.label}
           </span>
@@ -131,7 +131,7 @@ export default function ProjectCard({
               href={repo}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-1.5 border border-white/10 bg-white/[0.03] px-2.5 py-1.5 font-mono text-[0.6rem] font-black uppercase tracking-[0.14em] text-foreground/80 transition-all hover:-translate-y-0.5 hover:border-amber/50 hover:text-amber"
+              className="flex min-h-9 flex-1 items-center justify-center gap-1.5 border border-white/10 bg-white/[0.03] px-2.5 py-1.5 font-mono text-[0.6rem] font-black uppercase tracking-[0.12em] text-foreground/80 transition-all hover:-translate-y-0.5 hover:border-amber/50 hover:text-amber sm:flex-none sm:tracking-[0.14em]"
             >
               <Code2 className="h-3.5 w-3.5" />
               Repo
@@ -142,7 +142,7 @@ export default function ProjectCard({
               href={live}
               target={live.startsWith("#") ? undefined : "_blank"}
               rel={live.startsWith("#") ? undefined : "noreferrer"}
-              className="flex items-center gap-1.5 border border-slate/25 bg-slate/[0.06] px-2.5 py-1.5 font-mono text-[0.6rem] font-black uppercase tracking-[0.14em] text-slate transition-all hover:-translate-y-0.5 hover:border-slate/60 hover:text-foreground"
+              className="flex min-h-9 flex-1 items-center justify-center gap-1.5 border border-slate/25 bg-slate/[0.06] px-2.5 py-1.5 font-mono text-[0.6rem] font-black uppercase tracking-[0.12em] text-slate transition-all hover:-translate-y-0.5 hover:border-slate/60 hover:text-foreground sm:flex-none sm:tracking-[0.14em]"
             >
               <Globe className="h-3.5 w-3.5" />
               Live

@@ -59,11 +59,11 @@ export default function SectionFrame({
       data-reveal
     >
       {/* folder tab + section header band */}
-      <div className="relative mb-8 flex items-end gap-3 md:mb-10">
+      <div className="relative mb-6 flex min-w-0 flex-wrap items-end gap-3 md:mb-10">
         {/* folder tab */}
-        <div className="relative -mb-px md:mb-0">
+        <div className="relative -mb-px min-w-0 max-w-full md:mb-0">
           <div
-            className="relative px-4 pb-2 pt-3 md:px-5 md:pb-2.5 md:pt-3.5"
+            className="relative max-w-full px-3 pb-2 pt-3 sm:px-4 md:px-5 md:pb-2.5 md:pt-3.5"
             style={{
               clipPath:
                 "polygon(0 0, 100% 0, 100% 100%, 12px 100%, 12px 14px, 0 14px)",
@@ -76,21 +76,21 @@ export default function SectionFrame({
               ["--frame-accent" as string]: ACCENT_HEX[accent],
             }}
           >
-            <div className="flex items-center gap-2">
+            <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
               <span
                 className={cn("h-1.5 w-1.5 rounded-full", ACCENT_BG[accent])}
                 style={{ boxShadow: "0 0 8px currentColor" }}
               />
               <span
                 className={cn(
-                  "font-mono text-[0.6rem] font-black uppercase tracking-[0.18em]",
+                  "font-mono text-[0.56rem] font-black uppercase tracking-[0.14em] sm:text-[0.6rem] sm:tracking-[0.18em]",
                   ACCENT_TEXT[accent],
                 )}
               >
                 {fileNumber}
               </span>
               <span className="text-[0.6rem] text-muted-foreground/50">{"//"}</span>
-              <span className="font-mono text-[0.6rem] uppercase tracking-[0.14em] text-muted-foreground">
+              <span className="min-w-0 truncate font-mono text-[0.56rem] uppercase tracking-[0.12em] text-muted-foreground sm:text-[0.6rem] sm:tracking-[0.14em]">
                 {fileLabel}
               </span>
             </div>
@@ -125,7 +125,7 @@ export default function SectionFrame({
       <div className="relative">
         <div
           aria-hidden
-          className="pointer-events-none absolute -inset-3 -z-[1] md:-inset-4 cork-backing"
+          className="pointer-events-none absolute -inset-1 -z-[1] sm:-inset-3 md:-inset-4 cork-backing"
         >
           {/* corner pin cluster top-left */}
           <div className="absolute left-3 top-3 flex gap-1.5">

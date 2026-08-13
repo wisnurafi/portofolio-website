@@ -58,7 +58,7 @@ export default function Contact() {
                   href={item.href}
                   target={external ? "_blank" : undefined}
                   rel={external ? "noreferrer" : undefined}
-                  className="group flex items-center justify-between gap-3 border border-border bg-muted p-2.5 transition-all hover:-translate-y-0.5 hover:border-amber/40"
+                  className="group flex min-w-0 items-center justify-between gap-3 border border-border bg-muted p-2.5 transition-all hover:-translate-y-0.5 hover:border-amber/40"
                 >
                   <span className="flex min-w-0 items-center gap-2">
                     <Icon className="h-4 w-4 shrink-0 text-muted-foreground group-hover:text-amber" />
@@ -66,7 +66,7 @@ export default function Contact() {
                       {item.value}
                     </span>
                   </span>
-                  <span className="font-mono text-[0.55rem] font-black uppercase tracking-[0.12em] text-amber">
+                  <span className="shrink-0 font-mono text-[0.55rem] font-black uppercase tracking-[0.1em] text-amber sm:tracking-[0.12em]">
                     {item.label}
                   </span>
                 </a>

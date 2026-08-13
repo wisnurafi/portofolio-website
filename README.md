@@ -25,6 +25,7 @@ src/
 │   ├── background/              # Page-level background overlays/canvas effects
 │   ├── evidence/                # Evidence-board cards, photos, frames, project cards
 │   ├── forms/                   # Client forms
+│   ├── layout/                  # Layout-level components (footer)
 │   ├── navigation/              # Navigation components
 │   └── visuals/                 # Avatar, decoded text, radar, terminal, scroll effects
 ├── sections/                    # Home page content sections

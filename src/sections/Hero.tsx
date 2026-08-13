@@ -57,15 +57,18 @@ export default function Hero() {
         <EvidencePhoto
           rotate={2.5}
           colSpan="lg:col-span-5"
-          className="sm:col-span-2 lg:col-start-8 flex items-center justify-center"
+          className="flex items-center justify-center sm:col-span-2 lg:col-start-8"
           caption="profile sketch · usually online"
           tape="mask"
           tapeColor="amber"
           tapeSide="top-right"
         >
           <div className="relative flex items-center justify-center">
-            <RadarScan size={260} className="absolute opacity-25" />
-            <AsciiAvatar className="relative z-10 h-56 w-56 sm:h-64 sm:w-64" />
+            <RadarScan
+              size={176}
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-25"
+            />
+            <AsciiAvatar className="relative z-10 h-48 w-48 min-[380px]:h-56 min-[380px]:w-56 sm:h-64 sm:w-64" />
           </div>
         </EvidencePhoto>
 
@@ -114,8 +117,8 @@ export default function Hero() {
           pin="center"
         >
           <p className="body-note mb-2">STATUS</p>
-          <p className="flex items-center gap-2 text-lg font-black uppercase text-amber">
-            <Cpu className="h-4 w-4" />
+          <p className="flex items-start gap-2 text-base font-black uppercase text-amber sm:items-center sm:text-lg">
+            <Cpu className="mt-0.5 h-4 w-4 shrink-0 sm:mt-0" />
             Available for serious work
           </p>
           <p className="mt-1 text-xs font-black uppercase tracking-wider text-muted-foreground">

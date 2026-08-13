@@ -148,12 +148,28 @@
   }
 
   .wall-section {
-    @apply relative mx-auto max-w-[1600px] px-4 py-16 md:px-8 md:py-24;
+    @apply relative mx-auto max-w-[1600px] px-3 py-12 sm:px-4 sm:py-16 md:px-8 md:py-24;
   }
 
   .evidence-board {
-    @apply relative grid auto-rows-min gap-6;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
+    @apply relative grid auto-rows-min gap-4 sm:gap-5 lg:gap-6;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .evidence-board > * {
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .evidence-board {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .evidence-board {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
   }
 
   /* Cork board backing — sits behind a whole evidence board */
@@ -164,7 +180,7 @@
   .cork-board::before {
     content: "";
     position: absolute;
-    inset: -1.25rem;
+    inset: -0.5rem;
     z-index: -1;
     pointer-events: none;
     border-radius: 2px;
@@ -183,7 +199,7 @@
   .cork-board::after {
     content: "";
     position: absolute;
-    inset: -1.25rem;
+    inset: -0.5rem;
     z-index: -1;
     pointer-events: none;
     border-radius: 2px;
@@ -221,7 +237,7 @@
   }
 
   .evidence-card {
-    @apply relative bg-card/95 p-5 transition-all duration-200 ease-out;
+    @apply relative bg-card/95 p-4 transition-all duration-200 ease-out sm:p-5;
     box-shadow:
       0 1px 1px rgba(0,0,0,0.45),
       0 6px 14px -3px rgba(0,0,0,0.55),
@@ -232,7 +248,7 @@
 
   /* Mono card — single muted hue per section, only border-top + accent label */
   .evidence-card-mono {
-    @apply relative bg-card/95 p-5 transition-all duration-200 ease-out;
+    @apply relative bg-card/95 p-4 transition-all duration-200 ease-out sm:p-5;
     border-top: 1px solid rgba(255,255,255,0.06);
     box-shadow:
       0 1px 1px rgba(0,0,0,0.45),
@@ -278,7 +294,7 @@
   .evidence-card-magenta:hover { border-top-color: rgba(156, 111, 142, 0.85); box-shadow: 0 1px 2px rgba(0,0,0,0.45), 0 8px 22px rgba(0,0,0,0.45), 0 0 26px -8px rgba(156,111,142,0.12), inset 0 1px 0 rgba(255,255,255,0.05); }
 
   .evidence-photo {
-    @apply relative overflow-hidden bg-card p-2 pb-6 transition-all duration-200 ease-out;
+    @apply relative overflow-hidden bg-card p-2 pb-5 transition-all duration-200 ease-out sm:pb-6;
     box-shadow:
       0 2px 2px rgba(0,0,0,0.45),
       0 10px 22px -5px rgba(0,0,0,0.55),
@@ -541,17 +557,21 @@
   .status-tag-magenta { border-color: rgba(156, 111, 142, 0.35); background: rgba(156, 111, 142, 0.08); color: #bb97ad; }
 
   .display-heading {
-    @apply text-4xl font-black uppercase leading-[0.88] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl;
+    @apply text-[2.35rem] font-black uppercase leading-[0.9] tracking-tight text-foreground min-[380px]:text-4xl sm:text-5xl md:text-6xl lg:text-7xl;
     letter-spacing: -0.03em;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
   }
 
   .section-heading {
     @apply text-2xl font-black uppercase leading-[0.92] tracking-tight text-foreground md:text-3xl;
     letter-spacing: -0.02em;
+    text-wrap: balance;
   }
 
   .body-copy-sm {
     @apply text-sm leading-relaxed text-foreground/85;
+    overflow-wrap: anywhere;
   }
 
   .body-note {
@@ -559,11 +579,11 @@
   }
 
   .action-button {
-    @apply inline-flex items-center justify-center gap-2 border border-amber/40 bg-amber/10 px-5 py-3 font-mono text-xs font-black uppercase tracking-[0.12em] text-amber transition-all hover:-translate-y-0.5 hover:border-amber hover:bg-amber hover:text-background hover:shadow-[0_0_24px_-6px_rgba(201,151,63,0.3)];
+    @apply inline-flex min-h-11 flex-1 items-center justify-center gap-2 border border-amber/40 bg-amber/10 px-4 py-3 text-center font-mono text-[0.7rem] font-black uppercase tracking-[0.1em] text-amber transition-all hover:-translate-y-0.5 hover:border-amber hover:bg-amber hover:text-background hover:shadow-[0_0_24px_-6px_rgba(201,151,63,0.3)] sm:flex-none sm:px-5 sm:text-xs sm:tracking-[0.12em];
   }
 
   .ghost-button {
-    @apply inline-flex items-center justify-center gap-2 border border-border bg-transparent px-5 py-3 font-mono text-xs font-black uppercase tracking-[0.12em] text-foreground/70 transition-all hover:-translate-y-0.5 hover:border-foreground/30 hover:bg-foreground/5 hover:text-foreground;
+    @apply inline-flex min-h-11 flex-1 items-center justify-center gap-2 border border-border bg-transparent px-4 py-3 text-center font-mono text-[0.7rem] font-black uppercase tracking-[0.1em] text-foreground/70 transition-all hover:-translate-y-0.5 hover:border-foreground/30 hover:bg-foreground/5 hover:text-foreground sm:flex-none sm:px-5 sm:text-xs sm:tracking-[0.12em];
   }
 
   .reveal {

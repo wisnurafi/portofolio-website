@@ -112,7 +112,7 @@ export default function TopNav() {
         </div>
 
         <div className="relative border-b border-white/8 bg-background/85 backdrop-blur-md">
-          <div className="mx-auto flex h-14 max-w-[1600px] items-center gap-4 px-3 md:h-16 md:gap-6 md:px-6">
+          <div className="mx-auto flex h-14 max-w-[1600px] items-center gap-3 px-3 md:h-16 md:px-6 lg:gap-6">
             {/* brand */}
             <a
               href="#top"
@@ -141,7 +141,7 @@ export default function TopNav() {
             </a>
 
             {/* nav rail */}
-            <nav className="hidden flex-1 items-center justify-center md:flex">
+            <nav className="hidden flex-1 items-center justify-center lg:flex">
               <ul className="flex items-center gap-0.5 border border-white/8 bg-black/30 px-1.5 py-1">
                 {navItems.map((item) => {
                   const isActive = item.href.slice(1) === activeId;
@@ -183,7 +183,7 @@ export default function TopNav() {
             </nav>
 
             {/* HUD strip */}
-            <div className="ml-auto hidden items-center gap-3 md:flex">
+            <div className="ml-auto hidden items-center gap-3 lg:flex">
               <span className="hidden font-mono text-[0.58rem] uppercase tracking-[0.16em] text-muted-foreground xl:inline">
                 <span className="text-amber">SEC</span>{" // "}
                 <span className="text-foreground/90">{activeItem.short}</span>{" "}
@@ -211,7 +211,7 @@ export default function TopNav() {
             {/* mobile trigger */}
             <button
               type="button"
-              className="ml-auto flex h-9 w-9 items-center justify-center border border-white/10 text-muted-foreground transition-colors hover:border-amber/40 hover:text-amber md:hidden"
+              className="ml-auto flex h-9 w-9 items-center justify-center border border-white/10 text-muted-foreground transition-colors hover:border-amber/40 hover:text-amber lg:hidden"
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
@@ -224,12 +224,12 @@ export default function TopNav() {
         {/* mobile menu */}
         <div
           className={cn(
-            "overflow-hidden border-b border-white/8 bg-background/95 backdrop-blur-md transition-all duration-300 md:hidden",
+            "overflow-hidden border-b border-white/8 bg-background/95 backdrop-blur-md transition-all duration-300 lg:hidden",
             open ? "max-h-[28rem] opacity-100" : "max-h-0 opacity-0",
           )}
         >
           <nav className="px-3 py-3">
-            <ul className="grid grid-cols-2 gap-2">
+            <ul className="grid grid-cols-1 gap-2 min-[380px]:grid-cols-2">
               {navItems.map((item) => {
                 const isActive = item.href.slice(1) === activeId;
                 return (
