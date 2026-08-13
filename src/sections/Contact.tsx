@@ -1,5 +1,8 @@
-import { ActionTag, ChapterHeader, AvatarBeat } from "@/components/comic";
-import ContactForm from "@/components/ContactForm";
+import EvidenceBoard from "@/components/evidence/EvidenceBoard";
+import EvidenceCard from "@/components/evidence/EvidenceCard";
+import SectionFrame from "@/components/evidence/SectionFrame";
+import ContactForm from "@/components/forms/ContactForm";
+import Avatar from "@/components/visuals/Avatar";
 import { AtSign, Code2, Mail, MessageCircle } from "lucide-react";
 
 const contacts = [
@@ -11,72 +14,94 @@ const contacts = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="section-shell" data-reveal>
-      <ChapterHeader
-        code="CH.05"
-        kicker="Last panel"
-        title="Send me the ugly version."
-      />
-
-      <div className="comic-page" data-reveal>
-        {/* Panel 1 — the brief */}
-        <div className="panel panel-3 panel-ink panel-dots" data-reveal-child>
-          <span className="panel-num">01</span>
-          <ActionTag tone="yellow">Incoming brief</ActionTag>
-          <p className="mt-5 text-2xl font-black uppercase leading-tight text-zinc-50 md:text-3xl">
-            Broken builds. Behavior that makes no sense. A finding that needs a
-            second pair of eyes. A binary that refuses to explain itself.
+    <SectionFrame
+      sectionId="contact"
+      fileNumber="COMMS // 06"
+      fileLabel="Send something interesting"
+      accent="red"
+      classification="TOP SECRET"
+      date="2026.08.13"
+    >
+      <EvidenceBoard className="items-start">
+        <EvidenceCard
+          accent="red"
+          rotate={-1}
+          colSpan="lg:col-span-5"
+          damage="creased"
+          tape
+        >
+          <span className="status-tag status-tag-red mb-3 inline-flex">OPEN TO TALK</span>
+          <p className="mb-4 text-xl font-black uppercase leading-tight text-foreground md:text-2xl">
+            If you have a weird bug, a security question, or a serious build idea, send it over.
           </p>
-          <div className="panel-caption mt-6">
-            Do not polish it. Tell me what happened, what you expected, where it
-            runs, and what you already tried.
+          <div className="flex items-center gap-4">
+            <Avatar pose="alert" animated className="h-14 w-14" />
+            <p className="font-mono text-xs font-black uppercase tracking-[0.1em] text-red">
+              Helpful context: what happened, where it runs, and what you already tried.
+            </p>
           </div>
-          <AvatarBeat
-            pose="alert"
-            caption="Send it broken. I prefer it that way."
-            className="mt-6"
-            avatarClassName="max-w-[96px]"
-          />
-        </div>
+        </EvidenceCard>
 
-        {/* Panel 2 — channels */}
-        <div className="panel panel-3 panel-paper" data-reveal-child>
-          <span className="panel-num">02</span>
-          <p className="comic-label text-zinc-600">Direct channels</p>
-          <div className="mt-4 grid gap-3">
+        <EvidenceCard
+          accent="amber"
+          rotate={0.7}
+          colSpan="lg:col-span-4"
+        >
+          <p className="body-note mb-3">DIRECT CHANNELS</p>
+          <div className="grid gap-2">
             {contacts.map((item) => {
               const Icon = item.icon;
               const external = !item.href.startsWith("mailto:");
               return (
                 <a
                   key={item.label}
-                  className="group flex items-center justify-between gap-4 border-[3px] border-zinc-950 bg-zinc-100 p-3 text-zinc-950 shadow-[4px_4px_0_#020617] transition-transform hover:-translate-y-1"
                   href={item.href}
                   target={external ? "_blank" : undefined}
                   rel={external ? "noreferrer" : undefined}
+                  className="group flex items-center justify-between gap-3 border border-border bg-muted p-2.5 transition-all hover:-translate-y-0.5 hover:border-amber/40"
                 >
-                  <span className="flex min-w-0 items-center gap-3">
-                    <Icon className="h-5 w-5 shrink-0" />
-                    <span className="truncate font-black">{item.value}</span>
+                  <span className="flex min-w-0 items-center gap-2">
+                    <Icon className="h-4 w-4 shrink-0 text-muted-foreground group-hover:text-amber" />
+                    <span className="truncate font-mono text-xs font-bold uppercase tracking-wide text-foreground">
+                      {item.value}
+                    </span>
                   </span>
-                  <span className="font-mono text-xs font-black uppercase tracking-[0.14em] text-cyan-700">
+                  <span className="font-mono text-[0.55rem] font-black uppercase tracking-[0.12em] text-amber">
                     {item.label}
                   </span>
                 </a>
               );
             })}
           </div>
-        </div>
+        </EvidenceCard>
 
-        {/* Panel 3 — form, full width */}
-        <div className="panel panel-6 panel-cyan panel-dots" data-reveal-child>
-          <span className="panel-num">03</span>
-          <p className="comic-label text-zinc-800">Drop the message here</p>
-          <div className="mt-4">
-            <ContactForm />
+        <EvidenceCard
+          accent="slate"
+          rotate={-0.5}
+          colSpan="lg:col-span-3"
+          damage="torn"
+        >
+          <p className="body-note mb-3">RESPONSE</p>
+          <p className="text-sm leading-relaxed text-foreground/80">
+            I usually reply faster when the message is specific. Screenshots, logs, repro steps,
+            or a short context dump help a lot.
+          </p>
+          <div className="mt-4 border-t border-border pt-3">
+            <p className="font-mono text-xs uppercase tracking-wider text-slate">
+              status: listening
+            </p>
           </div>
-        </div>
-      </div>
-    </section>
+        </EvidenceCard>
+
+        <EvidenceCard
+          accent="amber"
+          rotate={0.3}
+          colSpan="lg:col-span-12"
+        >
+          <p className="body-note mb-4">MESSAGE</p>
+          <ContactForm />
+        </EvidenceCard>
+      </EvidenceBoard>
+    </SectionFrame>
   );
 }

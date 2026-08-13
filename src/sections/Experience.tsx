@@ -1,125 +1,141 @@
-import { ChapterHeader, ComicPanel, Sfx, SpeechBubble, AvatarBeat } from "@/components/comic";
+import EvidenceBoard from "@/components/evidence/EvidenceBoard";
+import EvidenceCard from "@/components/evidence/EvidenceCard";
+import SectionFrame from "@/components/evidence/SectionFrame";
+import Avatar from "@/components/visuals/Avatar";
+import { cn } from "@/lib/utils";
 
-// NOTE: case stories below are believable placeholders — Wisnu, swap the
-// [REDACTED]/detail bits for real (redacted-OK) specifics when ready.
 const cases = [
   {
-    id: "CASE-01",
-    tone: "cyan" as const,
-    pose: "alert" as const,
-    sfx: "CRASH.",
-    sfxTone: "magenta" as const,
-    title: "The crash that only happened on one machine",
-    aside: "One user. One box. Clean everywhere else.",
+    id: "CASE 01",
+    title: "The one machine problem",
+    aside: "One user, one machine, clean everywhere else.",
     panels: [
-      "Desktop app died for exactly one user. Clean on every test box.",
-      "Pulled the dump: access violation past a user-mode boundary, only under a specific locale + timing window.",
-      "Reduced it to a race in init order. Wrote the repro + the one-line fix path.",
+      "A desktop app crashed for exactly one user while every test machine looked fine.",
+      "The dump pointed to an access violation that only showed up with a specific locale and timing window.",
+      "I narrowed it down to init order, wrote a repro, and made the fix path small enough to act on.",
     ],
+    tone: "amber" as const,
   },
   {
-    id: "CASE-02",
-    tone: "magenta" as const,
-    pose: "smug" as const,
-    sfx: "BYPASS.",
-    sfxTone: "lime" as const,
-    title: "The auth check that was technically there",
-    aside: "The check ran. It just didn't matter.",
+    id: "CASE 02",
+    title: "The auth check that was not enough",
+    aside: "The check existed. The trust model did not.",
     panels: [
-      "Endpoint had an auth check. On paper, locked.",
-      "Replayed a packet, flipped one branch after the check — server happily answered.",
-      "Proved impact end to end before it became a ticket. Fix priority: now.",
+      "The endpoint had an auth check, so it looked safe at first glance.",
+      "A replayed request exposed a branch after the check that still trusted user controlled state.",
+      "I proved the impact end to end, documented the boundary issue, and made the priority obvious.",
     ],
+    tone: "red" as const,
   },
 ];
 
+// Field log uses Now/Past as the only color signal — magenta/amber semantic.
+// Inside each entry, no per-card accent — just label color.
 const logs = [
-  { tag: "Now", role: "Systems Software Engineer", company: "Beyondsoft Singapore", tone: "lime" },
-  { tag: "Now", role: "Offensive Security Engineer", company: "Confidential", tone: "magenta" },
-  { tag: "Past", role: "Independent Penetration Tester", company: "Web + network", tone: "cyan" },
-  { tag: "Past", role: "Game Security Research", company: "Client integrity / RE", tone: "yellow" },
+  { tag: "Now" as const, role: "Systems Software Engineer", company: "BeyondSoft Singapore", labelClass: "text-amber" },
+  { tag: "Now" as const, role: "Offensive Security Engineer", company: "Private clients", labelClass: "text-red" },
+  { tag: "Past" as const, role: "Independent Penetration Tester", company: "Web and network", labelClass: "text-slate" },
+  { tag: "Past" as const, role: "Game Security Research", company: "Client integrity and RE", labelClass: "text-amber" },
 ];
+
+const TAG_MAP: Record<string, string> = {
+  Now: "status-tag-amber",
+  Past: "status-tag-slate",
+};
 
 export default function Experience() {
   return (
-    <section id="experience" className="section-shell" data-reveal>
-      <ChapterHeader
-        code="CH.03"
-        kicker="Case files"
-        title="Not a tidy timeline. Recurring case files."
-      />
-
-      <div className="grid gap-8">
-        {cases.map((c, i) => (
-          <div key={c.id} data-reveal>
-            <div className="mb-3 flex flex-wrap items-center gap-3">
-              <span className="comic-chapter-code">{c.id}</span>
-              <h3 className="text-lg font-black uppercase tracking-wide text-zinc-50">
+    <SectionFrame
+      sectionId="experience"
+      fileNumber="CASE FILES // 03"
+      fileLabel="Work in real situations"
+      accent="amber"
+      classification="CONFIDENTIAL"
+      date="2026.08.13"
+    >
+      <EvidenceBoard className="items-start">
+        {cases.map((c, ci) => (
+          <EvidenceCard
+            key={c.id}
+            variant="accent"
+            accent={c.tone}
+            rotate={ci % 2 === 0 ? -0.8 : 0.8}
+            colSpan="lg:col-span-6"
+            damage={ci === 0 ? "creased" : "torn"}
+            tape={ci === 0}
+            tapeColor={c.tone}
+          >
+            <div className="mb-3 flex flex-wrap items-center gap-2">
+              <span className="status-tag status-tag-amber">{c.id}</span>
+              <h3 className="text-base font-black uppercase tracking-wide text-foreground">
                 {c.title}
               </h3>
-              <Sfx size="sm" tone={c.sfxTone} tilt={-4} className="ml-auto">
-                {c.sfx}
-              </Sfx>
             </div>
-            <div className="comic-page" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+            <div className="space-y-3">
               {c.panels.map((p, j) => (
                 <div
                   key={j}
-                  className={`panel panel-dots ${
-                    i % 2 === 0 ? "panel-paper" : "panel-ink"
-                  }`}
-                  style={{ gridColumn: "span 1 / span 1" }}
-                  data-reveal-child
+                  className={cn(
+                    "border-l-2 pl-3",
+                    j === 2 ? "border-amber/60" : "border-border",
+                  )}
                 >
-                  <span className="panel-num">{`0${j + 1}`}</span>
-                  <p
-                    className={`text-sm font-bold leading-6 ${
-                      i % 2 === 0 ? "text-zinc-800" : "text-zinc-200"
-                    }`}
-                  >
-                    {p}
-                  </p>
-                  {j === 0 ? (
-                    <AvatarBeat
-                      pose={c.pose}
-                      className="mt-4 self-start"
-                      avatarClassName="max-w-[72px]"
-                    />
-                  ) : null}
-                  {j === c.panels.length - 1 ? (
-                    <SpeechBubble tone={c.tone} className="mt-4">
-                      {c.aside}
-                    </SpeechBubble>
-                  ) : null}
+                  <span className="body-note block">STEP 0{j + 1}</span>
+                  <p className="mt-1 body-copy-sm">{p}</p>
                 </div>
               ))}
             </div>
-          </div>
+            <p className="mt-4 font-mono text-xs font-black uppercase tracking-[0.1em] text-slate">
+              &gt; {c.aside}
+            </p>
+          </EvidenceCard>
         ))}
-      </div>
 
-      <ComicPanel tone="lime" className="mt-10 p-5 md:p-7" data-reveal>
-        <p className="comic-label">Field log</p>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2">
-          {logs.map((log) => (
-            <div
-              key={log.role}
-              className="flex items-center gap-3 border-[3px] border-zinc-950 bg-zinc-100 p-3 text-zinc-950 shadow-[4px_4px_0_#020617]"
-              data-reveal-child
-            >
-              <span className={`action-tag action-tag-${log.tone}`}>{log.tag}</span>
-              <div className="min-w-0">
-                <p className="truncate text-sm font-black uppercase leading-tight">
+        {/* Field log — single magenta identity, color reserved for Now/Past markers */}
+        <EvidenceCard
+          variant="mono"
+          accent="amber"
+          rotate={-0.4}
+          colSpan="lg:col-span-12"
+          damage="crumpled"
+        >
+          <div className="mb-5 flex items-center justify-between border-b border-white/5 pb-3">
+            <p className="font-mono text-[0.65rem] font-black uppercase tracking-[0.18em] text-muted-foreground">
+              WORK LOG
+            </p>
+            <Avatar pose="smug" animated className="h-10 w-10" />
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {logs.map((log, i) => (
+              <div
+                key={log.role}
+                className="evidence-card-mono evidence-card-mono-magenta p-3"
+                style={{ transform: `rotate(${i % 2 === 0 ? 0.6 : -0.6}deg)` }}
+              >
+                <span
+                  className={cn(
+                    "status-tag text-[0.55rem]",
+                    TAG_MAP[log.tag],
+                  )}
+                >
+                  {log.tag}
+                </span>
+                <p
+                  className={cn(
+                    "mt-2 text-sm font-black uppercase leading-tight",
+                    log.labelClass,
+                  )}
+                >
                   {log.role}
                 </p>
-                <p className="truncate font-mono text-[0.7rem] font-bold uppercase tracking-[0.12em] text-zinc-600">
+                <p className="mt-1 font-mono text-[0.6rem] font-bold uppercase tracking-[0.1em] text-muted-foreground">
                   {log.company}
                 </p>
               </div>
-            </div>
-          ))}
-        </div>
-      </ComicPanel>
-    </section>
+            ))}
+          </div>
+        </EvidenceCard>
+      </EvidenceBoard>
+    </SectionFrame>
   );
 }

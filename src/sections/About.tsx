@@ -1,78 +1,141 @@
-import { ChapterHeader, AvatarBeat } from "@/components/comic";
+import EvidenceBoard from "@/components/evidence/EvidenceBoard";
+import EvidenceCard from "@/components/evidence/EvidenceCard";
+import EvidencePhoto from "@/components/evidence/EvidencePhoto";
+import SectionFrame from "@/components/evidence/SectionFrame";
+import Avatar from "@/components/visuals/Avatar";
 
 const principles = [
-  "A bug is not real until I reproduce it twice.",
-  "A finding is not done until the fix is obvious.",
-  "No source code? The behavior still leaves prints.",
+  "I trust a bug after I can reproduce it twice.",
+  "A finding is not finished until the fix is obvious.",
+  "No source code is still fine. Behavior leaves clues.",
+];
+
+// status is the semantic signal that earns a colored accent on each dossier item.
+// everything else in this section sits on the section's mono-amber identity.
+const dossierItems = [
+  { label: "Name", value: "Wisnu Rafi", status: "CONFIRMED" as const },
+  { label: "Day work", value: "Systems Software Engineer", detail: "BeyondSoft Singapore", status: "ACTIVE" as const },
+  { label: "Security work", value: "Offensive Security Engineer", detail: "Private clients", status: "ACTIVE" as const },
+  { label: "Main lane", value: "Reverse engineering and red team", status: "CLASSIFIED" as const },
 ];
 
 export default function About() {
   return (
-    <section id="about" className="section-shell" data-reveal>
-      <ChapterHeader
-        code="CH.01"
-        kicker="Origin story"
-        title="I build the thing, then I hunt for how it breaks."
-      />
+    <SectionFrame
+      sectionId="about"
+      fileNumber="DOSSIER // 01"
+      fileLabel="About Wisnu"
+      accent="amber"
+      classification="CONFIDENTIAL"
+      date="2026.08.13"
+    >
+      <EvidenceBoard className="items-start">
+        <EvidencePhoto
+          rotate={-2}
+          colSpan="lg:col-span-4"
+          className="flex items-center justify-center"
+          caption="profile sketch · last seen debugging"
+          tape="mask"
+          tapeColor="amber"
+          tapeSide="top-left"
+        >
+          <Avatar pose="watching" animated className="h-52 w-52" />
+        </EvidencePhoto>
 
-      <div className="comic-page" data-reveal>
-        {/* Panel 1 — narration */}
-        <div className="panel panel-4 panel-yellow panel-dots" data-reveal-child>
-          <span className="panel-num">01</span>
-          <p className="comic-label text-zinc-800">Narration</p>
-          <p className="mt-4 text-2xl font-black leading-snug text-zinc-950 md:text-3xl">
-            I do not chase the happy path. I want the crash dump, the malformed
-            packet, the branch nobody tested, the one box where everything falls
-            over. That is where the truth lives.
-          </p>
-        </div>
-
-        {/* Panel 2 — the loop */}
-        <div className="panel panel-2 panel-ink panel-dots" data-reveal-child>
-          <span className="panel-num">02</span>
-          <p className="comic-kicker">The loop</p>
-          <ol className="mt-4 space-y-2 font-mono text-sm font-bold text-zinc-200">
-            <li>1 / Catch the failure</li>
-            <li>2 / Shrink the repro</li>
-            <li>3 / Trace the boundary</li>
-            <li>4 / Write the fix path</li>
-          </ol>
-          <AvatarBeat
-            pose="watching"
-            caption="Origin: curiosity that wouldn't quit."
-            className="mt-6"
-            avatarClassName="max-w-[96px]"
-          />
-        </div>
-
-        {/* Panel 3 — how I work, prose */}
-        <div className="panel panel-3 panel-paper" data-reveal-child>
-          <span className="panel-num">03</span>
-          <p className="comic-label text-zinc-600">How I actually work</p>
-          <p className="mt-4 text-base font-semibold leading-7 text-zinc-800">
-            My day moves between systems code, desktop engineering, reverse
-            engineering, and offensive work. No mysticism. I look at what is
-            really happening, cut it down to a case that fires every time, then
-            write the fix notes I would want handed to me.
-          </p>
-        </div>
-
-        {/* Panel 4 — rules / speech */}
-        <div className="panel panel-3 panel-lime panel-dots" data-reveal-child>
-          <span className="panel-num">04</span>
-          <p className="comic-label text-zinc-800">House rules</p>
-          <div className="mt-4 space-y-2">
-            {principles.map((line) => (
-              <div
-                key={line}
-                className="border-[3px] border-zinc-950 bg-zinc-100 px-3 py-2 font-mono text-xs font-black uppercase leading-5 tracking-[0.1em] text-zinc-950"
+        {dossierItems.map((item, i) => (
+          <EvidenceCard
+            key={item.label}
+            variant="accent"
+            accent={
+              item.status === "CLASSIFIED"
+                ? "red"
+                : item.status === "ACTIVE"
+                  ? "slate"
+                  : "amber"
+            }
+            rotate={i % 2 === 0 ? 0.8 : -0.8}
+            colSpan="lg:col-span-4"
+            pin={i % 2 === 0 ? "left" : "right"}
+            damage={i === 0 ? "torn" : i === 3 ? "creased" : "none"}
+            tape={i === 1 ? "torn" : false}
+            tapeColor={
+              item.status === "CLASSIFIED"
+                ? "red"
+                : item.status === "ACTIVE"
+                  ? "slate"
+                  : "amber"
+            }
+            tapeSide={i % 2 === 0 ? "top-left" : "top-right"}
+          >
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <span className="body-note">{item.label}</span>
+              <span
+                className={`status-tag ${
+                  item.status === "CLASSIFIED"
+                    ? "status-tag-red"
+                    : item.status === "ACTIVE"
+                      ? "status-tag-slate"
+                      : "status-tag-amber"
+                }`}
               >
-                {line}
-              </div>
+                {item.status}
+              </span>
+            </div>
+            <p className="mt-2 text-lg font-black uppercase tracking-wide text-foreground">
+              {item.value}
+            </p>
+            {item.detail ? (
+              <p className="mt-1 font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                {item.detail}
+              </p>
+            ) : null}
+          </EvidenceCard>
+        ))}
+
+        {/* Field notes — mono-amber, same as section identity */}
+        <EvidenceCard
+          variant="mono"
+          accent="amber"
+          rotate={-0.5}
+          colSpan="lg:col-span-8"
+          damage="crumpled"
+          tape
+          tapeColor="amber"
+        >
+          <p className="body-note mb-3">FIELD NOTES</p>
+          <p className="body-copy-sm">
+            I am the kind of engineer who gets curious when something only breaks for one user,
+            on one machine, at the worst possible time. I like messy problems because they force
+            the real story out of the system.
+          </p>
+        </EvidenceCard>
+
+        {/* House rules — same mono identity, uses a rule-mark instead of a red border */}
+        <EvidenceCard
+          variant="mono"
+          accent="amber"
+          rotate={1.2}
+          colSpan="lg:col-span-4"
+          pin="right"
+        >
+          <p className="body-note mb-3">
+            <span className="text-red">HOW I WORK</span>
+            <span className="ml-2 text-[0.55rem] text-muted-foreground/60">
+              [ practical ]
+            </span>
+          </p>
+          <ul className="space-y-3">
+            {principles.map((rule) => (
+              <li
+                key={rule}
+                className="border-l-2 border-amber/40 pl-3 font-mono text-xs uppercase leading-relaxed tracking-wide text-foreground/80"
+              >
+                {rule}
+              </li>
             ))}
-          </div>
-        </div>
-      </div>
-    </section>
+          </ul>
+        </EvidenceCard>
+      </EvidenceBoard>
+    </SectionFrame>
   );
 }

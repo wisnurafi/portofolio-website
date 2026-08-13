@@ -1,108 +1,85 @@
-import { ChapterHeader, MotionLines, AvatarBeat, Sfx } from "@/components/comic";
+import EvidenceBoard from "@/components/evidence/EvidenceBoard";
+import EvidenceCard from "@/components/evidence/EvidenceCard";
+import SectionFrame from "@/components/evidence/SectionFrame";
+import { Cpu, Hammer, Code, TerminalSquare } from "lucide-react";
 
 const groups = [
   {
-    n: "01",
-    tone: "panel-ink",
-    span: "panel-4",
     title: "Reverse engineering",
-    note: "Where I live when source is missing.",
+    note: "The tools I reach for when source is missing or the behavior feels suspicious.",
     tools: ["IDA Pro", "Ghidra", "x64dbg", "OllyDbg"],
-    chip: "text-lime-300",
-    dominant: true,
+    icon: Cpu,
   },
   {
-    n: "02",
-    tone: "panel-rest",
-    span: "panel-2",
-    title: "Build",
+    title: "Building",
+    note: "Languages I use when the thing needs to actually ship.",
     tools: ["C / C++", "Rust", "Python", "C#"],
-    chip: "text-cyan-300",
+    icon: Hammer,
   },
   {
-    n: "03",
-    tone: "panel-rest",
-    span: "panel-3",
     title: "Editors",
+    note: "Comfortable workspaces for low level code, desktop apps, and quick experiments.",
     tools: ["IntelliJ IDEA", "Visual Studio 2022", "VS Code"],
-    chip: "text-zinc-200",
+    icon: Code,
   },
   {
-    n: "04",
-    tone: "panel-cyan",
-    span: "panel-3",
-    title: "Operating systems",
+    title: "Systems",
+    note: "The environments I debug, test, break, and fix things in.",
     tools: ["Kali Linux", "RHEL", "Windows"],
-    chip: "text-lime-300",
+    icon: TerminalSquare,
   },
 ];
 
+// Single accent per section — color used as identity, not per-card variation.
 export default function Stack() {
   return (
-    <section id="stack" className="section-shell" data-reveal>
-      <ChapterHeader
-        code="CH.04"
-        kicker="Loadout"
-        title="What I reach for when the easy answer runs out."
-      />
-
-      <div className="comic-page" data-reveal>
-        {groups.map((g) => {
-          const light = g.tone === "panel-cyan";
+    <SectionFrame
+      sectionId="stack"
+      fileNumber="LOADOUT // 04"
+      fileLabel="Tools I actually use"
+      accent="slate"
+      classification="PUBLIC"
+      date="2026.08.13"
+    >
+      <EvidenceBoard className="items-start">
+        {groups.map((g, i) => {
+          const Icon = g.icon;
           return (
-            <div
-              key={g.n}
-              className={`panel ${g.span} panel-dots ${g.tone} ${
-                g.dominant ? "justify-between" : ""
-              }`}
-              data-reveal-child
+            <EvidenceCard
+              key={g.title}
+              variant="mono"
+              accent="slate"
+              rotate={i % 2 === 0 ? 0.9 : -0.9}
+              colSpan={i === 0 ? "lg:col-span-6" : "lg:col-span-3"}
+              pin={i % 2 === 0 ? "left" : "right"}
+              damage={i === 1 ? "torn" : i === 3 ? "creased" : "none"}
+              tape={i === 2}
             >
-              <span className="panel-num">{g.n}</span>
-              {g.dominant && <MotionLines />}
-
-              {g.dominant ? (
-                <Sfx size="md" tone="lime" tilt={-2} className="mb-3">
-                  TOOLS UP.
-                </Sfx>
-              ) : null}
-
-              <div>
-                <p
-                  className={`comic-label ${
-                    light ? "text-zinc-800" : "text-zinc-400"
-                  }`}
-                >
+              <div className="mb-3 flex items-center gap-3">
+                <Icon className="h-5 w-5 text-slate" />
+                <p className="font-mono text-[0.65rem] font-black uppercase tracking-[0.18em] text-muted-foreground">
                   {g.title}
                 </p>
-                {g.note ? (
-                  <p className="mt-1 font-mono text-[0.7rem] font-bold uppercase tracking-[0.12em] text-zinc-500">
-                    {g.note}
-                  </p>
-                ) : null}
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {g.tools.map((tool) => (
-                    <span
-                      key={tool}
-                      className={`border-[3px] border-zinc-950 bg-zinc-950 px-3 py-1.5 font-mono text-xs font-black uppercase ${g.chip} shadow-[3px_3px_0_rgba(2,6,23,0.4)]`}
-                    >
-                      {tool}
-                    </span>
-                  ))}
-                </div>
               </div>
-
-              {g.dominant ? (
-                <AvatarBeat
-                  pose="smug"
-                  caption="The kit doesn't lie. People do."
-                  className="mt-6 self-end"
-                  avatarClassName="max-w-[96px]"
-                />
+              {g.note ? (
+                <p className="mb-3 font-mono text-[0.7rem] uppercase leading-relaxed tracking-[0.06em] text-foreground/70">
+                  {g.note}
+                </p>
               ) : null}
-            </div>
+              <div className="flex flex-wrap gap-2">
+                {g.tools.map((tool) => (
+                  <span
+                    key={tool}
+                    className="border border-slate/15 bg-slate/[0.04] px-3 py-1.5 font-mono text-xs font-black uppercase tracking-wide text-foreground/85"
+                  >
+                    {tool}
+                  </span>
+                ))}
+              </div>
+            </EvidenceCard>
           );
         })}
-      </div>
-    </section>
+      </EvidenceBoard>
+    </SectionFrame>
   );
 }

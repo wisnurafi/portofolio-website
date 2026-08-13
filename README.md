@@ -1,41 +1,41 @@
 # Wisnu Rafi - Portfolio
 
-Personal portfolio site for Wisnu Rafi, a Systems Software Engineer and Offensive Security Engineer. Built with Next.js 16, React 19, Tailwind CSS v4, and Framer Motion.
+Personal portfolio site for Wisnu Rafi, a Systems Software Engineer and Offensive Security Engineer. Built with Next.js 16, React 19, Tailwind CSS v4, and canvas/CSS-driven evidence-board visuals.
 
 ## Tech Stack
 
 - **Framework**: [Next.js 16](https://nextjs.org) (App Router)
 - **Runtime**: React 19
 - **Language**: TypeScript 5
-- **Styling**: Tailwind CSS v4 with `tw-animate-css`
-- **UI Primitives**: Radix UI, shadcn, `class-variance-authority`, `tailwind-merge`
-- **Animation**: Framer Motion
-- **Icons**: Hugeicons, Lucide React
+- **Styling**: Tailwind CSS v4 with `tw-animate-css`, shadcn theme CSS, `clsx`, and `tailwind-merge`
+- **Icons**: Lucide React
 - **Linting**: ESLint 9 (`eslint-config-next`)
 
 ## Project Structure
 
 ```
 src/
-├── app/                    # Next.js App Router entry
-│   ├── layout.tsx          # Root layout, metadata, fonts
-│   ├── page.tsx            # Home page composition
-│   ├── opengraph-image.tsx # Dynamic OG image
-│   └── globals.css         # Global styles
+├── app/                         # Next.js App Router entry
+│   ├── api/contact/route.ts     # Contact form API endpoint
+│   ├── layout.tsx               # Root layout, metadata, fonts
+│   ├── page.tsx                 # Home page composition
+│   ├── opengraph-image.tsx      # Dynamic OG image
+│   └── globals.css              # Global styles and design tokens
 ├── components/
-│   ├── layout/             # Layout-level components
-│   ├── shared/             # Reusable shared components
-│   ├── ui/                 # UI primitives (shadcn-based)
-│   ├── ScrollEffects.tsx   # Scroll-driven effects
-│   └── TopNav.tsx          # Top navigation bar
-├── sections/               # Page sections
+│   ├── background/              # Page-level background overlays/canvas effects
+│   ├── evidence/                # Evidence-board cards, photos, frames, project cards
+│   ├── forms/                   # Client forms
+│   ├── navigation/              # Navigation components
+│   └── visuals/                 # Avatar, decoded text, radar, terminal, scroll effects
+├── sections/                    # Home page content sections
 │   ├── Hero.tsx
 │   ├── About.tsx
 │   ├── Expertise.tsx
 │   ├── Experience.tsx
 │   ├── Stack.tsx
+│   ├── Projects.tsx
 │   └── Contact.tsx
-└── lib/                    # Utilities (e.g. cn helper)
+└── lib/                         # Utilities (e.g. cn helper)
 ```
 
 ## Getting Started

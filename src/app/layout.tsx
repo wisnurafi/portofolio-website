@@ -19,13 +19,13 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Wisnu Rafi | Systems & Offensive Security Engineer",
   description:
-    "Portfolio of Wisnu Rafi - Systems Software Engineer and Offensive Security Engineer focused on low-level systems, reverse engineering, and secure software.",
+    "Portfolio of Wisnu Rafi — Systems Software Engineer and Offensive Security Engineer focused on low-level systems, reverse engineering, and secure software.",
   openGraph: {
     type: "website",
     url: siteUrl,
     title: "Wisnu Rafi | Systems & Offensive Security Engineer",
     description:
-      "Systems software engineer and offensive security engineer focused on low-level systems, reverse engineering, and secure software.",
+      "Systems Software Engineer and Offensive Security Engineer focused on low-level systems, reverse engineering, and secure software.",
     images: [
       {
         url: "/opengraph-image",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Wisnu Rafi | Systems & Offensive Security Engineer",
     description:
-      "Systems software engineer and offensive security engineer focused on low-level systems, reverse engineering, and secure software.",
+      "Systems Software Engineer and Offensive Security Engineer focused on low-level systems, reverse engineering, and secure software.",
     images: ["/opengraph-image"],
   },
 };
@@ -56,8 +56,8 @@ export default function RootLayout({
         "h-full",
         "antialiased",
         geistMono.variable,
-        "font-sans",
         spaceGrotesk.variable,
+        "font-sans",
       )}
     >
       <body className="min-h-full flex flex-col">{children}</body>

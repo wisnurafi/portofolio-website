@@ -1,112 +1,102 @@
-import { ChapterHeader, SpeechBubble, AvatarBeat, Sfx, MotionLines } from "@/components/comic";
+import EvidenceBoard from "@/components/evidence/EvidenceBoard";
+import EvidenceCard from "@/components/evidence/EvidenceCard";
+import SectionFrame from "@/components/evidence/SectionFrame";
+import { Terminal, ScanLine, Binary, Monitor, Network, FileText } from "lucide-react";
 
 const skills = [
   {
-    n: "01",
-    tone: "panel-cyan",
-    span: "panel-4",
-    title: "Crash reading",
-    body: "Walk backward from the symptom — state, inputs, memory, timing, the branch that turned ugly. Out: a path that fires every time.",
-    dark: false,
-    dominant: true,
+    n: "T 01",
+    title: "Reading crashes",
+    body: "I start with the symptom, then work backward through state, input, memory, and timing until the weird branch finally shows itself.",
+    icon: Terminal,
   },
   {
-    n: "02",
-    tone: "panel-magenta",
-    span: "panel-2",
-    title: "Exploit proof",
-    body: "Scary wording, or does it actually move under pressure? Out: real impact, hard limits, fix priority.",
-    dark: false,
+    n: "T 02",
+    title: "Proving impact",
+    body: "I do not stop at scary wording. If the risk is real, I want a clean proof that is clear, repeatable, and safe to explain.",
+    icon: ScanLine,
   },
   {
-    n: "03",
-    tone: "panel-rest",
-    span: "panel-3",
-    title: "Binary reading",
-    body: "Disassembly, traces, debugger state — for when source is missing, stale, or lying. Out: control-flow notes.",
-    dark: true,
+    n: "T 03",
+    title: "Reading binaries",
+    body: "When source is missing or not telling the full truth, I use disassembly, debugger state, traces, and behavior to rebuild the picture.",
+    icon: Binary,
   },
   {
-    n: "04",
-    tone: "panel-rest",
-    span: "panel-3",
+    n: "T 04",
     title: "Desktop weirdness",
-    body: "UI state, native calls, latency, and user flow all blaming each other. Out: behavior that holds still.",
-    dark: true,
+    body: "UI state, native calls, permissions, registry, and latency love blaming each other. I separate the noise from the actual bug.",
+    icon: Monitor,
   },
   {
-    n: "05",
-    tone: "panel-lime",
-    span: "panel-3",
-    title: "Traffic smell",
-    body: "Read the wire and the protocol assumptions when the bug only shows up between two systems. Out: trust-boundary notes.",
-    dark: false,
+    n: "T 05",
+    title: "Reading traffic",
+    body: "When the bug lives between two systems, I look at packets, protocol assumptions, and trust boundaries until the gap is visible.",
+    icon: Network,
   },
   {
-    n: "06",
-    tone: "panel-yellow",
-    span: "panel-3",
-    title: "Fix notes",
-    body: "Turn messy evidence into the smallest useful next step — patch, repro, ticket. Out: work someone can pick up cold.",
-    dark: false,
+    n: "T 06",
+    title: "Writing the fix path",
+    body: "I turn messy evidence into something useful for the next person. Clear repro, real impact, priority, and a practical direction to patch.",
+    icon: FileText,
   },
 ];
 
+// One hero card (the most fundamental skill) gets full accent.
+// All other cards sit on a single muted hue — color used as hierarchy, not decoration.
+const HERO_INDEX = 0;
+
 export default function Expertise() {
   return (
-    <section id="expertise" className="section-shell" data-reveal>
-      <ChapterHeader
-        code="CH.02"
-        kicker="Recurring panels"
-        title="The situations I keep getting pulled into."
-      />
-
-      <div className="comic-page" data-reveal>
-        {skills.map((s) => (
-          <div
-            key={s.n}
-            className={`panel ${s.span} panel-dots ${s.tone} ${
-              s.dominant ? "justify-between" : ""
-            }`}
-            data-reveal-child
-          >
-            <span className="panel-num">{s.n}</span>
-            {s.dominant && <MotionLines />}
-
-            {s.dominant ? (
-              <div className="mb-4 flex items-start justify-between gap-3">
-                <Sfx size="lg" tone="ink" tilt={-3}>
-                  WHY?
-                </Sfx>
-                <AvatarBeat pose="alert" avatarClassName="max-w-[84px]" />
+    <SectionFrame
+      sectionId="expertise"
+      fileNumber="CAPABILITIES // 02"
+      fileLabel="Problems I like solving"
+      accent="amber"
+      classification="INTERNAL"
+      date="2026.08.13"
+    >
+      <EvidenceBoard className="items-start">
+        {skills.map((s, i) => {
+          const Icon = s.icon;
+          const isHero = i === HERO_INDEX;
+          return (
+            <EvidenceCard
+              key={s.n}
+              variant={isHero ? "accent" : "mono"}
+              accent="amber"
+              rotate={i % 2 === 0 ? 0.7 : -0.7}
+              colSpan={i === 0 || i === 3 ? "lg:col-span-5" : "lg:col-span-3"}
+              pin={isHero ? "center" : i % 3 === 0 ? "left" : "right"}
+              damage={i === 1 ? "torn" : i === 4 ? "creased" : isHero ? "crumpled" : "none"}
+              tape={i === 2}
+            >
+              <div className="mb-3 flex items-center justify-between">
+                <span className="font-mono text-[0.65rem] font-black uppercase tracking-[0.18em] text-muted-foreground">
+                  {s.n}
+                </span>
+                <Icon
+                  className={
+                    isHero
+                      ? "h-5 w-5 text-amber"
+                      : "h-5 w-5 text-amber/55"
+                  }
+                />
               </div>
-            ) : null}
-
-            <div>
               <h3
-                className={`text-xl font-black uppercase tracking-wide ${
-                  s.dark ? "text-zinc-50" : "text-zinc-950"
-                } ${s.dominant ? "md:text-2xl" : ""}`}
+                className={
+                  isHero
+                    ? "mb-2 text-xl font-black uppercase tracking-wide text-foreground md:text-2xl"
+                    : "mb-2 text-lg font-black uppercase tracking-wide text-foreground"
+                }
               >
                 {s.title}
               </h3>
-              <p
-                className={`mt-3 text-sm font-semibold leading-6 ${
-                  s.dark ? "text-zinc-300" : "text-zinc-900"
-                }`}
-              >
-                {s.body}
-              </p>
-            </div>
-
-            {s.dominant ? (
-              <SpeechBubble tone="paper" className="mt-6 max-w-xs">
-                Source says it cannot. The crash says it did.
-              </SpeechBubble>
-            ) : null}
-          </div>
-        ))}
-      </div>
-    </section>
+              <p className="body-copy-sm">{s.body}</p>
+            </EvidenceCard>
+          );
+        })}
+      </EvidenceBoard>
+    </SectionFrame>
   );
 }

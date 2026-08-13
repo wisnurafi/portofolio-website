@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg-r" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a0c0e"/>
+      <stop offset="1" stop-color="#030405"/>
+    </linearGradient>
+    <pattern id="grid-r" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a1d21" stroke-width="1"/>
+    </pattern>
+    <pattern id="hex-r" width="60" height="52" patternUnits="userSpaceOnUse">
+      <polygon points="30,2 56,17 56,45 30,60 4,45 4,17" fill="none" stroke="#1a1d21" stroke-width="0.6"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg-r)"/>
+  <rect width="1600" height="900" fill="url(#hex-r)"/>
+
+  <g font-family="ui-monospace, monospace" fill="#d8cfc4">
+    <text x="80" y="100" font-size="22" font-weight="700" letter-spacing="3" fill="#b3554a">UNIVERSAL RUNTIME ANALYZER</text>
+    <text x="80" y="128" font-size="13" letter-spacing="2" fill="#7a6f63">READ-ONLY MEMORY INSPECTOR · C++20 · WIN32 · IMGUI · D3D11</text>
+    <line x1="80" y1="148" x2="1520" y2="148" stroke="#1a1d21" stroke-width="1"/>
+
+    <!-- left: target + handle -->
+    <g transform="translate(80,200)">
+      <text x="0" y="0" font-size="11" letter-spacing="3" fill="#b3554a">▌ TARGET · NOTEPAD.EXE</text>
+      <g transform="translate(0,20)">
+        <rect x="0" y="0" width="540" height="380" fill="#0a0c0e" stroke="#1a1d21"/>
+        <g font-size="11">
+          <text x="14" y="24" fill="#7a6f63">// handle acquisition</text>
+          <text x="14" y="48" fill="#d8cfc4">pid            </text><text x="160" y="48" fill="#c9973f">14832</text>
+          <text x="14" y="72" fill="#d8cfc4">arch (analyzer)</text><text x="160" y="72" fill="#7fae9e">x64</text>
+          <text x="14" y="96" fill="#d8cfc4">arch (target)  </text><text x="160" y="96" fill="#7fae9e">x64</text>
+          <text x="14" y="120" fill="#d8cfc4">access         </text><text x="160" y="120" fill="#c9973f">QUERY_INFORMATION | VM_READ</text>
+          <text x="14" y="144" fill="#d8cfc4">fallback       </text><text x="160" y="144" fill="#7a6f63">QUERY_LIMITED_INFORMATION</text>
+          <text x="14" y="168" fill="#d8cfc4">write-api      </text><text x="160" y="168" fill="#7fae9e">none (read-only)</text>
+
+          <line x1="14" y1="190" x2="526" y2="190" stroke="#1a1d21"/>
+          <text x="14" y="214" font-size="10" letter-spacing="2" fill="#7a6f63">// modules · 42 loaded</text>
+          <text x="14" y="238" fill="#d8cfc4">ntdll.dll</text><text x="240" y="238" fill="#7a6f63">0x7FFA8C1A0000</text>
+          <text x="14" y="258" fill="#d8cfc4">kernel32.dll</text><text x="240" y="258" fill="#7a6f63">0x7FFA8C0F0000</text>
+          <text x="14" y="278" fill="#d8cfc4">user32.dll</text><text x="240" y="278" fill="#7a6f63">0x7FFA8BF10000</text>
+          <text x="14" y="298" fill="#d8cfc4">notepad.exe</text><text x="240" y="298" fill="#c9973f">0x00007FF6A12A0000</text>
+          <text x="14" y="318" fill="#d8cfc4">  └ .text  </text><text x="240" y="318" fill="#7a6f63">R-X  0x1000-0x2A000</text>
+          <text x="14" y="338" fill="#d8cfc4">  └ .rdata </text><text x="240" y="338" fill="#7a6f63">R--  0x2A000-0x32000</text>
+          <text x="14" y="358" fill="#d8cfc4">  └ .data  </text><text x="240" y="358" fill="#7a6f63">RW-  0x32000-0x36000</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- right: signature / pattern hit -->
+    <g transform="translate(680,200)">
+      <text x="0" y="0" font-size="11" letter-spacing="3" fill="#b3554a">▌ SIGNATURE HIT · 48 8B 05 ?? ?? ?? ??</text>
+      <g transform="translate(0,20)">
+        <rect x="0" y="0" width="840" height="180" fill="#0a0c0e" stroke="#1a1d21"/>
+        <g font-size="11">
+          <text x="14" y="28" fill="#7a6f63">// pattern: IAT-entry getter (RIP-relative-32)</text>
+          <text x="14" y="56" fill="#d8cfc4">addr           </text><text x="180" y="56" fill="#c9973f">0x00007FF6A12C4A20</text>
+          <text x="14" y="78" fill="#d8cfc4">module         </text><text x="180" y="78" fill="#d8cfc4">notepad.exe + 0x1A4A20</text>
+          <text x="14" y="100" fill="#d8cfc4">section        </text><text x="180" y="100" fill="#7fae9e">.text</text>
+          <text x="14" y="122" fill="#d8cfc4">resolved       </text><text x="180" y="122" fill="#7fae9e">→ IAT[ IsDebuggerPresent ]</text>
+          <text x="14" y="144" fill="#d8cfc4">xref count     </text><text x="180" y="144" fill="#c9973f">3</text>
+          <text x="14" y="166" fill="#d8cfc4">severity       </text><text x="180" y="166" fill="#b3554a">⚠ ANTI-RE</text>
+        </g>
+      </g>
+
+      <!-- RTTI -->
+      <g transform="translate(0,220)">
+        <text x="0" y="0" font-size="11" letter-spacing="3" fill="#b3554a">▌ MSVC RTTI · VTABLES</text>
+        <g transform="translate(0,20)">
+          <rect x="0" y="0" width="840" height="180" fill="#0a0c0e" stroke="#1a1d21"/>
+          <g font-size="11">
+            <text x="14" y="28" fill="#7a6f63">// RTTICompleteObjectLocator walk → TypeDescriptor demangle</text>
+            <text x="14" y="56" fill="#d8cfc4">0x7FF6A13A2A40  </text><text x="200" y="56" fill="#7fae9e">class DocumentModel::CNotepad</text>
+            <text x="14" y="76" fill="#d8cfc4">  vtable[0..11]  </text><text x="200" y="76" fill="#7a6f63">12 slots · 3 base classes</text>
+            <text x="14" y="96" fill="#d8cfc4">0x7FF6A13A2B80  </text><text x="200" y="96" fill="#7fae9e">class FindDialog::CFinder</text>
+            <text x="14" y="116" fill="#d8cfc4">  vtable[0..7]   </text><text x="200" y="116" fill="#7a6f63">8 slots · 1 base class</text>
+            <text x="14" y="136" fill="#d8cfc4">0x7FF6A13A2CC0  </text><text x="200" y="136" fill="#7fae9e">class Encoding::UTF8</text>
+            <text x="14" y="156" fill="#d8cfc4">  vtable[0..5]   </text><text x="200" y="156" fill="#7a6f63">6 slots · 2 base classes</text>
+          </g>
+        </g>
+      </g>
+    </g>
+
+    <!-- bottom: memory map -->
+    <g transform="translate(80,620)">
+      <text x="0" y="0" font-size="11" letter-spacing="3" fill="#b3554a">▌ MEMORY MAP · VirtualQueryEx</text>
+      <g transform="translate(0,20)">
+        <rect x="0" y="0" width="1440" height="160" fill="#0a0c0e" stroke="#1a1d21"/>
+        <g font-size="10">
+          <text x="14" y="22" fill="#7a6f63">REGION                          STATE      PROT         TYPE        SIZE</text>
+          <text x="14" y="44" fill="#d8cfc4">0x00007FF6A0000000-0x7FF6A13C0000</text>
+          <text x="320" y="44" fill="#7fae9e">COMMIT</text><text x="430" y="44" fill="#d8cfc4">R-X · R-- · RW-</text>
+          <text x="640" y="44" fill="#d8cfc4">IMAGE</text><text x="800" y="44" fill="#d8cfc4">19.5 MB</text>
+          <text x="14" y="64" fill="#d8cfc4">0x00007FFA8BF00000-0x7FFA8C400000</text>
+          <text x="320" y="64" fill="#7fae9e">COMMIT</text><text x="430" y="64" fill="#d8cfc4">R-X</text>
+          <text x="640" y="64" fill="#d8cfc4">IMAGE</text><text x="800" y="64" fill="#d8cfc4">81 MB (system)</text>
+          <text x="14" y="84" fill="#d8cfc4">0x000001A2B0000000-0x1A2B00200000</text>
+          <text x="320" y="84" fill="#7fae9e">COMMIT</text><text x="430" y="84" fill="#b3554a">RWX</text>
+          <text x="640" y="84" fill="#b3554a">PRIVATE ⚠</text><text x="800" y="84" fill="#b3554a">2 MB (JIT signal)</text>
+          <text x="14" y="104" fill="#d8cfc4">0x0000007FFE0000-0x0000007FFEFFFF</text>
+          <text x="320" y="104" fill="#c9973f">RESERVE</text><text x="430" y="104" fill="#c9973f">RW-</text>
+          <text x="640" y="104" fill="#d8cfc4">MAPPED</text><text x="800" y="104" fill="#d8cfc4">64 KB (shared user)</text>
+          <text x="14" y="124" fill="#d8cfc4">0x000000000000-0x00007FF6A0000000</text>
+          <text x="320" y="124" fill="#7a6f63">FREE</text><text x="430" y="124" fill="#7a6f63">---</text>
+          <text x="640" y="124" fill="#7a6f63">FREE</text><text x="800" y="124" fill="#7a6f63">rest of VA</text>
+        </g>
+      </g>
+    </g>
+
+    <line x1="80" y1="820" x2="1520" y2="820" stroke="#1a1d21"/>
+    <g font-size="11" letter-spacing="2" fill="#7a6f63">
+      <text x="80" y="850">READ-ONLY · JSON EXPORT v1 · OFFLINE / OWN SOFTWARE</text>
+      <text x="1280" y="850" fill="#b3554a">▣ URA.exe</text>
+    </g>
+  </g>
+</svg>

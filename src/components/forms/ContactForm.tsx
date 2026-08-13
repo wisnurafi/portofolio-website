@@ -47,15 +47,17 @@ export default function ContactForm() {
   }
 
   return (
-    <form className="comic-form" onSubmit={handleSubmit}>
+    <form className="grid gap-5" onSubmit={handleSubmit}>
       <div className="hidden">
         <label htmlFor="website">Website</label>
         <input id="website" name="website" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        <label className="comic-field">
-          <span>Name</span>
+      <div className="grid gap-5 sm:grid-cols-2">
+        <label className="grid gap-2">
+          <span className="font-mono text-xs font-black uppercase tracking-[0.14em] text-muted-foreground">
+            Name
+          </span>
           <input
             name="name"
             required
@@ -63,54 +65,64 @@ export default function ContactForm() {
             maxLength={120}
             placeholder="Your name"
             autoComplete="name"
+            className="w-full border border-border bg-muted px-4 py-3 font-mono text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground/60 focus:border-amber/50 focus:bg-card"
           />
         </label>
 
-        <label className="comic-field">
-          <span>Email</span>
+        <label className="grid gap-2">
+          <span className="font-mono text-xs font-black uppercase tracking-[0.14em] text-muted-foreground">
+            Email
+          </span>
           <input
             name="email"
             required
             type="email"
             placeholder="you@example.com"
             autoComplete="email"
+            className="w-full border border-border bg-muted px-4 py-3 font-mono text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground/60 focus:border-amber/50 focus:bg-card"
           />
         </label>
       </div>
 
-      <label className="comic-field">
-        <span>Subject</span>
+      <label className="grid gap-2">
+        <span className="font-mono text-xs font-black uppercase tracking-[0.14em] text-muted-foreground">
+          Subject
+        </span>
         <input
           name="subject"
           maxLength={160}
-          placeholder="What should I look at?"
+          placeholder="What do you want to talk about?"
+          className="w-full border border-border bg-muted px-4 py-3 font-mono text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground/60 focus:border-amber/50 focus:bg-card"
         />
       </label>
 
-      <label className="comic-field">
-        <span>Message</span>
+      <label className="grid gap-2">
+        <span className="font-mono text-xs font-black uppercase tracking-[0.14em] text-muted-foreground">
+          Message
+        </span>
         <textarea
           name="message"
           required
           minLength={10}
           maxLength={4000}
           rows={6}
-          placeholder="Tell me what happened, where it runs, and what you already tried."
+          placeholder="Give me the short version first. What happened, where it runs, and what you need from me."
+          className="w-full resize-y border border-border bg-muted px-4 py-3 font-mono text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground/60 focus:border-amber/50 focus:bg-card"
         />
       </label>
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <button
-          className="inline-flex items-center justify-center gap-2 border-2 border-zinc-950 bg-lime-300 px-5 py-3 text-sm font-black uppercase text-zinc-950 shadow-[5px_5px_0_#020617] transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
           type="submit"
           disabled={state === "sending"}
+          className="inline-flex items-center justify-center gap-2 border border-amber/40 bg-amber/10 px-5 py-3 font-mono text-xs font-black uppercase tracking-[0.14em] text-amber transition-all hover:-translate-y-0.5 hover:border-amber hover:bg-amber hover:text-background hover:shadow-[0_0_24px_-6px_rgba(201, 151, 63,0.35)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
         >
           <Send className="h-4 w-4" />
           {state === "sending" ? "Sending..." : "Send message"}
         </button>
 
-        <p className="min-h-6 font-mono text-xs font-bold uppercase tracking-[0.12em] text-zinc-300">
-          {state === "sent" && "Message sent. Check your inbox soon."}
+        <p className="min-h-6 font-mono text-xs font-bold uppercase tracking-[0.1em] text-muted-foreground">
+          {state === "sent" && "Message sent. I will get back to you."}
           {state === "error" && error}
         </p>
       </div>

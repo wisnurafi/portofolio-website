@@ -19,8 +19,8 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           background:
-            "radial-gradient(circle at 15% 20%, rgba(47,186,222,0.35), transparent 35%), radial-gradient(circle at 90% 10%, rgba(140,214,66,0.3), transparent 30%), #0f172a",
-          color: "#e5e7eb",
+            "radial-gradient(circle at 15% 20%, rgba(201, 151, 63,0.15), transparent 35%), radial-gradient(circle at 90% 10%, rgba(127, 174, 158,0.10), transparent 30%), #030405",
+          color: "#d8cfc4",
           padding: "64px",
           fontFamily: "Inter, Arial, sans-serif",
         }}
@@ -29,14 +29,14 @@ export default function OpenGraphImage() {
           style={{
             display: "flex",
             gap: "12px",
-            fontSize: 24,
-            letterSpacing: "0.08em",
+            fontSize: 22,
+            letterSpacing: "0.1em",
             textTransform: "uppercase",
-            color: "#a5f3fc",
+            color: "#c9973f",
           }}
         >
           <span>Systems Software Engineer</span>
-          <span style={{ color: "#bef264" }}>•</span>
+          <span style={{ color: "#b3554a" }}>{"//"}</span>
           <span>Offensive Security Engineer</span>
         </div>
 
@@ -44,10 +44,11 @@ export default function OpenGraphImage() {
           <h1
             style={{
               margin: 0,
-              fontSize: 82,
+              fontSize: 86,
               lineHeight: 1,
-              fontWeight: 700,
+              fontWeight: 800,
               letterSpacing: "-0.03em",
+              color: "#d8cfc4",
             }}
           >
             Wisnu Rafi
@@ -56,13 +57,13 @@ export default function OpenGraphImage() {
             style={{
               margin: 0,
               maxWidth: "920px",
-              fontSize: 34,
+              fontSize: 32,
               lineHeight: 1.3,
-              color: "#d1d5db",
+              color: "#7a7369",
             }}
           >
-            Building resilient low-level systems and improving software security
-            through offensive engineering and reverse analysis.
+            Building resilient low-level systems and improving software security through offensive
+            engineering and reverse analysis.
           </p>
         </div>
 
@@ -70,12 +71,12 @@ export default function OpenGraphImage() {
           style={{
             display: "flex",
             gap: "16px",
-            fontSize: 24,
-            color: "#9ca3af",
+            fontSize: 22,
+            color: "#7fae9e",
           }}
         >
           <span>github.com/wisnurafi</span>
-          <span>•</span>
+          <span style={{ color: "#7a7369" }}>{"//"}</span>
           <span>instagram.com/wisnurafi_</span>
         </div>
       </div>

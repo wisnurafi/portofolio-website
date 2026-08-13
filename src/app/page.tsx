@@ -3,13 +3,18 @@ import Contact from "@/sections/Contact";
 import Experience from "@/sections/Experience";
 import Expertise from "@/sections/Expertise";
 import Hero from "@/sections/Hero";
+import Projects from "@/sections/Projects";
 import Stack from "@/sections/Stack";
-import ScrollEffects from "@/components/ScrollEffects";
-import TopNav from "@/components/TopNav";
+import BoardWall from "@/components/background/BoardWall";
+import NoiseOverlay from "@/components/background/NoiseOverlay";
+import TopNav from "@/components/navigation/TopNav";
+import ScrollEffects from "@/components/visuals/ScrollEffects";
 
 export default function Home() {
   return (
-    <main className="page-shell text-zinc-100">
+    <main className="page-shell relative min-h-screen text-foreground">
+      <BoardWall />
+      <NoiseOverlay />
       <TopNav />
       <ScrollEffects />
       <Hero />
@@ -17,10 +22,17 @@ export default function Home() {
       <Expertise />
       <Experience />
       <Stack />
+      <Projects />
       <Contact />
-      <footer className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-6 py-8 font-mono text-xs uppercase tracking-[0.16em] text-zinc-500 md:px-8">
-        <span>{"\u00A9"} 2026 Wisnu Rafi</span>
-        <span className="hidden sm:inline">End of issue 01</span>
+      <footer className="border-t border-border bg-background/80">
+        <div className="mx-auto flex w-full max-w-[1600px] items-center justify-between gap-4 px-4 py-8 md:px-8">
+          <span className="font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground">
+            {"\u00A9"} 2026 Wisnu Rafi
+          </span>
+          <span className="hidden font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground sm:inline">
+            End of transmission
+          </span>
+        </div>
       </footer>
     </main>
   );
