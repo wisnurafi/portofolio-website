@@ -7,25 +7,25 @@ const groups = [
   {
     title: "Reverse engineering",
     note: "The tools I reach for when source is missing or the behavior feels suspicious.",
-    tools: ["IDA Pro", "Ghidra", "x64dbg", "OllyDbg"],
+    tools: ["IDA Pro", "Ghidra", "x64dbg", "OllyDbg", "WinDbg", "Radare2", "Binary Ninja"],
     icon: Cpu,
   },
   {
     title: "Building",
     note: "Languages I use when the thing needs to actually ship.",
-    tools: ["C / C++", "Rust", "Python", "C#"],
+    tools: ["C / C++", "Rust", "Python", "C#", "Typescript", "JavaScript"],
     icon: Hammer,
   },
   {
     title: "Editors",
     note: "Comfortable workspaces for low level code, desktop apps, and quick experiments.",
-    tools: ["IntelliJ IDEA", "Visual Studio 2022", "VS Code"],
+    tools: ["IntelliJ IDEA", "Visual Studio 2022", "VS Code", "Neovim"],
     icon: Code,
   },
   {
     title: "Systems",
     note: "The environments I debug, test, break, and fix things in.",
-    tools: ["Kali Linux", "RHEL", "Windows"],
+    tools: ["Kali Linux", "Parrot OS", "Windows"],
     icon: TerminalSquare,
   },
 ];
