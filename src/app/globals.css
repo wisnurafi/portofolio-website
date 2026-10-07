@@ -612,7 +612,7 @@ main.panels {
 .wshot {
   border: 1px solid var(--line-strong);
   background: var(--panel-2);
-  aspect-ratio: 16/10;
+  aspect-ratio: 2/1;
   overflow: hidden;
 }
 .wshot img {

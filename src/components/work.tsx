@@ -40,7 +40,7 @@ export default function Work() {
                   <div className="wbody-inner">
                     <div className="wshot">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={p.image} alt={p.title} loading="lazy" />
+                      <img src={p.image} alt={p.title} />
                     </div>
                     <div className="winfo">
                       <p>{p.description}</p>
