@@ -1,7 +1,7 @@
-﻿import { ImageResponse } from "next/og";
+import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Wisnu Rafi - Systems and Offensive Security Engineer";
+export const alt = "wisnu.rafi - Security Engineer";
 export const size = {
   width: 1200,
   height: 630,
@@ -18,52 +18,48 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background:
-            "radial-gradient(circle at 15% 20%, rgba(201, 151, 63,0.15), transparent 35%), radial-gradient(circle at 90% 10%, rgba(127, 174, 158,0.10), transparent 30%), #030405",
-          color: "#d8cfc4",
-          padding: "64px",
-          fontFamily: "Inter, Arial, sans-serif",
+          background: "#2b2b2b",
+          color: "#f2f2f2",
+          padding: "64px 72px",
+          fontFamily: "monospace",
+          border: "2px solid #4a4a4a",
         }}
       >
         <div
           style={{
             display: "flex",
-            gap: "12px",
-            fontSize: 22,
-            letterSpacing: "0.1em",
-            textTransform: "uppercase",
-            color: "#c9973f",
+            fontSize: 24,
+            letterSpacing: "0.2em",
+            color: "#8a8a8a",
           }}
         >
-          <span>Systems Software Engineer</span>
-          <span style={{ color: "#b3554a" }}>{"//"}</span>
-          <span>Offensive Security Engineer</span>
+          <span>
+            wisnu<span style={{ color: "#b48ae0" }}>.</span>rafi
+          </span>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-          <h1
-            style={{
-              margin: 0,
-              fontSize: 86,
-              lineHeight: 1,
-              fontWeight: 800,
-              letterSpacing: "-0.03em",
-              color: "#d8cfc4",
-            }}
-          >
-            Wisnu Rafi
-          </h1>
+        <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
           <p
             style={{
               margin: 0,
-              maxWidth: "920px",
-              fontSize: 32,
-              lineHeight: 1.3,
-              color: "#7a7369",
+              fontSize: 64,
+              lineHeight: 1.15,
+              fontWeight: 400,
+              letterSpacing: "-0.02em",
+              maxWidth: "1000px",
             }}
           >
-            Building resilient low-level systems and improving software security through offensive
-            engineering and reverse analysis.
+            I trust a bug after I can reproduce it{" "}
+            <span style={{ color: "#b48ae0" }}>twice.</span>
+          </p>
+          <p
+            style={{
+              margin: 0,
+              fontSize: 28,
+              color: "#b0b0b0",
+            }}
+          >
+            Security Engineer — BeyondSoft Singapore
           </p>
         </div>
 
@@ -72,12 +68,11 @@ export default function OpenGraphImage() {
             display: "flex",
             gap: "16px",
             fontSize: 22,
-            color: "#7fae9e",
+            color: "#8a8a8a",
           }}
         >
+          <span style={{ color: "#7fd6a8" }}>●</span>
           <span>github.com/wisnurafi</span>
-          <span style={{ color: "#7a7369" }}>{"//"}</span>
-          <span>instagram.com/wisnurafi_</span>
         </div>
       </div>
     ),

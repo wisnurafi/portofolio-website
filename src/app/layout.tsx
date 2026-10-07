@@ -1,45 +1,39 @@
-﻿import type { Metadata } from "next";
-import { Geist_Mono, Space_Grotesk } from "next/font/google";
+import type { Metadata } from "next";
+import { DM_Mono } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const dmMono = DM_Mono({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["300", "400", "500"],
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Wisnu Rafi | Systems & Offensive Security Engineer",
+  title: "Wisnu Rafi - Security Engineer",
   description:
-    "Portfolio of Wisnu Rafi — Systems Software Engineer and Offensive Security Engineer focused on low-level systems, reverse engineering, and secure software.",
+    "Portfolio of Wisnu Rafi, Security Engineer at BeyondSoft Singapore. Reverse engineering, systems software, and tools people actually install.",
   openGraph: {
     type: "website",
     url: siteUrl,
-    title: "Wisnu Rafi | Systems & Offensive Security Engineer",
+    title: "Wisnu Rafi - Security Engineer",
     description:
-      "Systems Software Engineer and Offensive Security Engineer focused on low-level systems, reverse engineering, and secure software.",
+      "Security Engineer at BeyondSoft Singapore. I trust a bug after I can reproduce it twice.",
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Wisnu Rafi portfolio open graph image",
+        alt: "wisnu.rafi portfolio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wisnu Rafi | Systems & Offensive Security Engineer",
+    title: "Wisnu Rafi - Security Engineer",
     description:
-      "Systems Software Engineer and Offensive Security Engineer focused on low-level systems, reverse engineering, and secure software.",
+      "Security Engineer at BeyondSoft Singapore. I trust a bug after I can reproduce it twice.",
     images: ["/opengraph-image"],
   },
 };
@@ -50,17 +44,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={cn(
-        "h-full",
-        "antialiased",
-        geistMono.variable,
-        spaceGrotesk.variable,
-        "font-sans",
-      )}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className={dmMono.className}>
+      <body>{children}</body>
     </html>
   );
 }
