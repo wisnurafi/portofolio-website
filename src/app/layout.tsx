@@ -11,13 +11,13 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "wisnu.rafi — Security Engineer",
+  title: "Wisnu Rafi - Security Engineer",
   description:
     "Portfolio of Wisnu Rafi, Security Engineer at BeyondSoft Singapore. Reverse engineering, systems software, and tools people actually install.",
   openGraph: {
     type: "website",
     url: siteUrl,
-    title: "wisnu.rafi — Security Engineer",
+    title: "Wisnu Rafi - Security Engineer",
     description:
       "Security Engineer at BeyondSoft Singapore. I trust a bug after I can reproduce it twice.",
     images: [
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "wisnu.rafi — Security Engineer",
+    title: "Wisnu Rafi - Security Engineer",
     description:
       "Security Engineer at BeyondSoft Singapore. I trust a bug after I can reproduce it twice.",
     images: ["/opengraph-image"],
