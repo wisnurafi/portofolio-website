@@ -31,7 +31,7 @@ export default function Hero() {
         <Reveal delay={280}>
           <p className="hero-now">
             <span className="sq" />
-            now: building in public · open for serious work
+            now: security engineer by day · shipping by night
           </p>
         </Reveal>
         <Reveal delay={360}>
