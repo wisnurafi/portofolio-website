@@ -1,31 +1,31 @@
-﻿import About from "@/sections/About";
-import Contact from "@/sections/Contact";
-import Experience from "@/sections/Experience";
-import Expertise from "@/sections/Expertise";
-import Hero from "@/sections/Hero";
-import Projects from "@/sections/Projects";
-import Stack from "@/sections/Stack";
-import BoardWall from "@/components/background/BoardWall";
-import NoiseOverlay from "@/components/background/NoiseOverlay";
-import SiteFooter from "@/components/layout/SiteFooter";
-import TopNav from "@/components/navigation/TopNav";
-import ScrollEffects from "@/components/visuals/ScrollEffects";
+import Loader from "@/components/loader";
+import Topbar from "@/components/topbar";
+import StatusBar from "@/components/statusbar";
+import Hero from "@/components/hero";
+import Profile from "@/components/profile";
+import Changelog from "@/components/changelog";
+import Expertise from "@/components/expertise";
+import Work from "@/components/work";
+import Stack from "@/components/stack";
+import Contact from "@/components/contact";
+import Footer from "@/components/footer";
 
 export default function Home() {
   return (
-    <main className="page-shell relative min-h-screen text-foreground">
-      <BoardWall />
-      <NoiseOverlay />
-      <TopNav />
-      <ScrollEffects />
+    <>
+      <Loader />
+      <Topbar />
       <Hero />
-      <About />
-      <Expertise />
-      <Experience />
-      <Stack />
-      <Projects />
-      <Contact />
-      <SiteFooter />
-    </main>
+      <main className="wrap panels">
+        <Profile />
+        <Changelog />
+        <Expertise />
+        <Work />
+        <Stack />
+        <Contact />
+      </main>
+      <Footer />
+      <StatusBar />
+    </>
   );
 }

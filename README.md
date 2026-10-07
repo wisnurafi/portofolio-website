@@ -1,100 +1,72 @@
-# Wisnu Rafi - Portfolio
+# wisnu.rafi — Portfolio
 
-Personal portfolio site for Wisnu Rafi, a Systems Software Engineer and Offensive Security Engineer. Built with Next.js 16, React 19, Tailwind CSS v4, and canvas/CSS-driven evidence-board visuals.
+Personal portfolio of Wisnu Rafi, Security Engineer at BeyondSoft Singapore.
+Built with Next.js 16, React 19, and hand-written CSS. No CSS framework, no icon
+library, no animation library.
 
-## Tech Stack
+## Design
 
-- **Framework**: [Next.js 16](https://nextjs.org) (App Router)
-- **Runtime**: React 19
-- **Language**: TypeScript 5
-- **Styling**: Tailwind CSS v4 with `tw-animate-css`, shadcn theme CSS, `clsx`, and `tailwind-merge`
-- **Icons**: Lucide React
-- **Linting**: ESLint 9 (`eslint-config-next`)
+`system24 calm` — a quiet, Discord-inspired dark theme. DM Mono everywhere,
+oklch grays, one purple accent, square corners, thin labeled panels. See
+`DESIGN.md` for the full concept.
 
-## Project Structure
-
-```
-src/
-├── app/                         # Next.js App Router entry
-│   ├── api/contact/route.ts     # Contact form API endpoint
-│   ├── layout.tsx               # Root layout, metadata, fonts
-│   ├── page.tsx                 # Home page composition
-│   ├── opengraph-image.tsx      # Dynamic OG image
-│   └── globals.css              # Global styles and design tokens
-├── components/
-│   ├── background/              # Page-level background overlays/canvas effects
-│   ├── evidence/                # Evidence-board cards, photos, frames, project cards
-│   ├── forms/                   # Client forms
-│   ├── layout/                  # Layout-level components (footer)
-│   ├── navigation/              # Navigation components
-│   └── visuals/                 # Avatar, decoded text, radar, terminal, scroll effects
-├── sections/                    # Home page content sections
-│   ├── Hero.tsx
-│   ├── About.tsx
-│   ├── Expertise.tsx
-│   ├── Experience.tsx
-│   ├── Stack.tsx
-│   ├── Projects.tsx
-│   └── Contact.tsx
-└── lib/                         # Utilities (e.g. cn helper)
-```
-
-## Getting Started
-
-Install dependencies:
+## Getting started
 
 ```bash
 npm install
-```
-
-Run the development server:
-
-```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser. The page auto-updates as you edit files under `src/`.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Available Scripts
+## Scripts
 
-| Script          | Description                          |
-| --------------- | ------------------------------------ |
-| `npm run dev`   | Start the development server         |
-| `npm run build` | Create a production build            |
-| `npm run start` | Start the production server          |
-| `npm run lint`  | Run ESLint across the project        |
+- `npm run dev` — local dev server
+- `npm run build` — production build
+- `npm run start` — serve the production build
+- `npm run lint` — eslint
 
-## Environment Variables
+## Environment
 
-Create a `.env.local` file at the project root:
+Copy `.env.example` to `.env.local` and set your production URL:
 
-```bash
+```
 NEXT_PUBLIC_SITE_URL=https://your-domain.com
-RESEND_API_KEY=re_your_api_key
-CONTACT_TO_EMAIL=wsnfii60@gmail.com
-CONTACT_FROM_EMAIL=Portfolio <onboarding@resend.dev>
 ```
 
-`NEXT_PUBLIC_SITE_URL` is used as `metadataBase` and for Open Graph URLs in `src/app/layout.tsx`. If unset, it falls back to `https://example.com`.
+Used for metadata and the Open Graph base URL.
 
-The contact form posts to `src/app/api/contact/route.ts` and sends email through Resend. `RESEND_API_KEY` is required. `CONTACT_TO_EMAIL` and `CONTACT_FROM_EMAIL` are optional; the form sends to `wsnfii60@gmail.com` by default. Use a verified Resend domain for `CONTACT_FROM_EMAIL` in production.
+## Structure
 
-## Fonts
-
-Loaded via `next/font/google`:
-
-- **Space Grotesk** - primary sans-serif (`--font-space-grotesk`)
-- **Geist Mono** - monospace (`--font-geist-mono`)
-
-## Deployment
-
-The app is ready to deploy on any platform that supports Next.js 16. The recommended path is [Vercel](https://vercel.com/new). Set `NEXT_PUBLIC_SITE_URL` in the platform's environment settings before deploying.
-
-```bash
-npm run build
-npm run start
+```
+src/
+  app/
+    page.tsx            # composition
+    layout.tsx          # DM Mono font + metadata
+    globals.css         # the entire design system (custom CSS)
+    opengraph-image.tsx # dynamic OG card, system24 styled
+  components/
+    topbar.tsx          # fixed header
+    statusbar.tsx       # fixed footer bar: live visitor-time clock + section tracker
+    loader.tsx          # quick boot overlay
+    reveal.tsx          # one calm scroll reveal (IntersectionObserver)
+    jakarta-clock.tsx   # hero clock, always Asia/Jakarta
+    hero.tsx            # statement headline
+    profile.tsx         # now / past / lane
+    changelog.tsx       # career as release notes, expandable
+    expertise.tsx
+    work.tsx            # 6 projects, expandable with screenshots
+    stack.tsx
+    contact.tsx         # email + github only
+    footer.tsx
+  lib/
+    data.ts             # projects, changelog, expertise, stack
 ```
 
-## License
+## Notes
 
-Open Source
+- Project screenshots are hotlinked from each repo's GitHub social preview
+  (`opengraph.githubassets.com`). If a repo gets a custom social image, the
+  portfolio picks it up automatically.
+- The old evidence-board design was fully removed in the `feat/redesign-system24`
+  branch. Nothing from it remains.
